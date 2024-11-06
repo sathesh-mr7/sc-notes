@@ -7,6 +7,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  color-scheme: light dark;
+  --body-bg: #CECECE;
+  --primary-color: #0473EA;
+  --sec-color: #b6f89e;
+  --text-color: #1D1D1D;
+  --sec-text-color: #535353;
+  --border-color: #C4C4C4;
+}
+
+:root [data-theme='dark'] {
+  --body-bg: #080814;
+  --primary-color: #0473EA;
+  --sec-color: #b6f89e;
+  --text-color: #1D1D1D;
+  --sec-text-color: #535353;
+  --border-color: #C4C4C4;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
