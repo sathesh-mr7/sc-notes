@@ -7,7 +7,9 @@ import styles from './Logo.module.scss';
 const Logo = () => {
   const themeContext = React.useContext(ThemeContext);
   return (
-    themeContext?.isDarkMode ? <img src={darkLogo} className={styles.logo} alt="logo" /> : <img src={logo} className={styles.logo} alt="logo" />
+    <div className={styles.container}>
+      {themeContext?.isDarkMode ? <img src={darkLogo} className={styles.logo} alt="logo" /> : <img src={logo} className={styles.logo} alt="logo" />}
+    </div>
   );
 };
 export default Logo;
