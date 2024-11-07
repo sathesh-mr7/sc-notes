@@ -1,0 +1,11 @@
+@import '../../shared-styles/mixin.scss';
+
+.addNotesButton {
+  display: flex;
+  align-items: center;
+  gap: rem(10px);
+
+  >img {
+    height: rem(14px);
+  }
+}
