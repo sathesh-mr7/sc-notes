@@ -32,4 +32,8 @@
     border: 1px solid var(--primary-color);
   }
 
+  &.edged {
+    border-radius: rem(10px);
+  }
+
 }
