@@ -1,0 +1,60 @@
+@import '../../shared-styles/mixin.scss';
+
+$redTag: #B50606;
+$orangeTag: #B55E06;
+$yellowTag: #B59806;
+$greenTag: #21B506;
+$blueTag: #068FB5;
+$purpleTag: #5206B5;
+$pinkTag: #B206B5;
+$grayTag: #2D2A2D;
+
+.container {
+  display: inline-block;
+  font-size: rem(11px);
+  padding: rem(4px) rem(10px);
+  border-radius: rem(30px);
+  color: var(--white-color);
+  text-transform: capitalize;
+  border: solid rem(1px) $grayTag;
+  background-color: $grayTag;
+  margin-right:rem(5px);
+  max-width: rem(70px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &.red {
+    background-color: $redTag;
+    border-color: $redTag;
+  }
+
+  &.blue {
+    background-color: $blueTag;
+    border-color: $blueTag;
+  }
+
+  &.green {
+    background-color: $greenTag;
+    border-color: $greenTag;
+  }
+
+  &.yellow {
+    background-color: $yellowTag;
+    border-color: $yellowTag;
+  }
+
+  &.purple {
+    background-color: $purpleTag;
+    border-color: $purpleTag;
+  }
+
+  &.orange {
+    background-color: $orangeTag;
+    border-color: $orangeTag;
+  }
+
+  &.pink {
+    background-color: $pinkTag;
+    border-color: $pinkTag;
+  }
+}
