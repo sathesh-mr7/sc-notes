@@ -1,0 +1,35 @@
+@import "../../shared-styles/mixin.scss";
+
+.button {
+  padding: rem(12px) rem(20px);
+  border: none;
+  border-radius: rem(30px);
+  font-size: rem(14px);
+  text-transform: uppercase;
+  letter-spacing: rem(1px);
+  font-weight: 700;
+  cursor: pointer;
+  margin: 16px 0;
+
+  &:hover {
+    opacity: 0.90;
+  }
+
+  &.primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: var(--sec-text-color);
+    border: 1px solid var(--border-color);
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+
+}
