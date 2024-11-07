@@ -1,10 +1,12 @@
+@import '../../shared-styles/mixin.scss';
+
 .container {
-  margin-bottom: 10px;
+  margin-bottom: rem(10px);
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: rem(5px);
 
   .logo {
-    height: 42px;
+    height: rem(42px);
   }
 }

@@ -1,7 +1,9 @@
+@import '../../shared-styles/mixin.scss';
+
 .container {
   background-color: var(--sec-bg);
   flex: 1;
-  border-radius: 12px;
-  padding: 18px;
+  border-radius: rem(12px);
+  padding: rem(18px);
   border: 1px solid var(--sec-border-color);
 }

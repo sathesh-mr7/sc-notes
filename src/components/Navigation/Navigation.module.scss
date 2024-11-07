@@ -1,19 +1,21 @@
+@import '../../shared-styles/mixin.scss';
+
 .container {
   .list {
     color: var(--sec-text-color);
     list-style: none;
     padding: 0;
-    margin: 16px 0;
+    margin: rem(16px) 0;
 
     >li {
       cursor: pointer;
-      padding: 8px 10px;
-      margin-bottom: 10px;
+      padding: rem(8px) rem(10px);
+      margin-bottom: rem(10px);
 
       &.selected {
         background-color: var(--sec-bg);
         font-weight: 600;
-        border-radius: 8px;
+        border-radius: rem(8px);
         color: var(--text-color);
       }
       
@@ -26,12 +28,12 @@
   .innerList {
     color: var(--sec-text-color);
     list-style: none;
-    padding: 12px 30px;
+    padding: rem(12px) rem(30px);
     position: relative;
-    font-size: 14px;
+    font-size: rem(14px);
 
     >li {
-      padding: 6px 0;
+      padding: rem(6px) 0;
       &:hover {
         color: var(--text-color);
       }
@@ -41,27 +43,27 @@
       content: '';
       display: block;
       height: 80%;
-      width: 2px;
+      width: rem(2px);
       background-color: var(--border-color);
       position: absolute;
-      left: 10px;
+      left: rem(10px);
       top: auto;
       bottom: auto;
     }
   }
 
   .textWithIcon {
-    font-size: 16px;
+    font-size: rem(16px);
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: rem(10px);
 
     .icon {
-      height: 24px;
+      height: rem(24px);
 
       &.right {
-        height: 14px;
+        height: rem(14px);
         margin-left: auto;
 
         &:hover {
