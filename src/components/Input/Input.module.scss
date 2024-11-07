@@ -1,0 +1,22 @@
+@import '../../shared-styles/mixin.scss';
+
+.input {
+  padding: rem(12px) rem(15px);
+  border: 1px solid var(--border-color);
+  border-radius: rem(5px);
+  font-size: rem(14px);
+  color: var(--text-color);
+  margin: rem(10px) 0;
+  transition: border-color 0.3s;
+  border-radius: rem(30px);
+
+  &:focus {
+    border-color: var(--primary-color);
+    outline-color: var(--primary-color);
+    outline-style: none;
+  }
+
+  &.error {
+    border-color: var(--error-color);
+  }
+}
