@@ -1,0 +1,68 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  background-color: transparent;
+  display: flex;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 12;
+  align-items: center;
+  justify-content: center;
+
+  .modalBody {
+    background-color: var(--primary-bg);
+    border-radius: rem(16px);
+    width: rem(300px);
+    padding: rem(16px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 2px rem(15px) rgba(0, 0, 0, 0.3);
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: rem(10px);
+
+      .closeButton {
+        cursor: pointer;
+        height: rem(30px);
+        width: rem(30px);
+        padding: 0;
+        border: none;
+        background: none;
+
+        .icon {
+          fill: var(--sec-text-color);
+          height: rem(20px);
+        }
+      }
+
+      .title {
+        margin: 0;
+        color: var(--text-color);
+      }
+    }
+
+    .content {
+      padding: rem(10px) 0;
+      flex: 1;
+
+      .message {
+        margin: 0;
+        color: var(--sec-text-color);
+        font-size: rem(14px);
+        line-height: rem(20px);
+      }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: rem(10px);
+      align-items: center;
+      margin-top: auto;
+    }
+  }
+}
