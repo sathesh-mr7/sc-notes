@@ -14,13 +14,13 @@ body {
   // color-scheme: light dark;
   --body-bg: #CECECE;
   --primary-bg: #FFFFFF;
-  --sec-bg: #EFEFEF;
+  --sec-bg: #f4f4f4;
   --primary-color: #0473EA;
   --sec-color: #b6f89e;
   --text-color: #1D1D1D;
   --sec-text-color: #535353;
   --border-color: #C4C4C4;
-  --sec-border-color: #C4C4C4;
+  --sec-border-color: #e1e1e1;
   --white-color: #FFFFFF;
   --black-color: #1D1D1D;
 }
@@ -38,7 +38,7 @@ body {
 }
 
 .divider {
-  height: rem(2px);
+  height: rem(1px);
   background: rgb(2, 0, 36);
   background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, var(--border-color) 20% , var(--border-color) 50%, var(--border-color) 80%, rgba(0, 212, 255, 0) 100%);
   margin: rem(16px) 0;
