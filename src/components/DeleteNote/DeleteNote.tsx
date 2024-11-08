@@ -1,15 +1,21 @@
 import React from 'react';
-import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import styles from './DeleteNote.module.scss';
-
-const DeleteNote: React.FC<{ id: string }> = ({ id }) => {
-  const handleDelete = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-    console.log(`Deleting note with id: ${id}`);
-  };
+import { useDispatch } from 'react-redux';
+import { showModal } from '../../store/modalSlice';
+interface DeleteNoteProps {
+  note: Note;
+  children: React.ReactNode;
+  onDelete: (note: Note) => void;
+}
+const DeleteNote: React.FC<DeleteNoteProps> = ({ note, children, onDelete }) => {
+  const dispatch = useDispatch();
   return (
-    <div className={styles.container} onClick={handleDelete}>
-      <TrashIcon className={styles.deleteIcon} />
+    <div className={styles.container} onClick={(event) => {
+      event.stopPropagation();
+      onDelete(note);
+      dispatch(showModal());
+    }}>
+      {children}
     </div>
   );
 };
