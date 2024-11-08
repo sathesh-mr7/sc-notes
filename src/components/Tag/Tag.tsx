@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Tag.module.scss';
 
 interface TagProps {
-  color?: 'red' | 'blue' | 'green' | 'yellow' | 'purple' | 'orange' | 'pink' | 'gray';
+  color?: TagColor;
   text: string;
 }
 const Tag: React.FC<TagProps> = ({

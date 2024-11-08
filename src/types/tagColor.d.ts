@@ -1,0 +1,1 @@
+type TagColor = 'red' | 'blue' | 'green' | 'yellow' | 'purple' | 'orange' | 'pink' | 'gray';
