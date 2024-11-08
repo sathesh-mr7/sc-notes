@@ -5,15 +5,18 @@
   border-radius: rem(16px);
   border: dashed rem(2px) var(--border-color);
   display: flex;
+  padding: rem(16px);
   justify-content: center;
   min-height: rem(222px);
-  width: rem(290px);
+  width: rem(250px);
   cursor: pointer;
   color: var(--sec-text-color);
   transition: border-color 0.5s;
+
   &:hover {
     border-color: var(--sec-text-color);
   }
+
   .emptyNoteText {
     font-size: rem(18px);
     font-weight: 500;
@@ -23,9 +26,10 @@
     gap: rem(10px);
     text-transform: capitalize;
 
-    >img {
-      height: 14px;
+    .plusIcon {
+      height: 18px;
+      fill: var(--sec-text-color);
     }
   }
-  
+
 }

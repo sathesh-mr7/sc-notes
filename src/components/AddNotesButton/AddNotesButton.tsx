@@ -1,6 +1,6 @@
-import Button from "../Button/Button"
-import PlusIcon from "../../assets/icons/plus-sign-white.png"
-import styles from "./AddNotesButton.module.scss"
+import Button from "../Button/Button";
+import { ReactComponent as PlusIcon } from "../../assets/icons/plus-sign.svg";
+import styles from "./AddNotesButton.module.scss";
 import React from "react";
 
 interface AddNotesButtonProps {
@@ -11,7 +11,7 @@ const AddNotesButton: React.FC<AddNotesButtonProps> = ({
 }) => {
   return (
     <Button className={styles.addNotesButton} onClick={onClick}>
-      <img src={PlusIcon} alt="+" />
+      <PlusIcon className={styles.plusIcon} />
       <span>Add Notes</span>
     </Button>
   )

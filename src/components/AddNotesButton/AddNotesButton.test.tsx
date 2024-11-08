@@ -5,7 +5,6 @@ describe("AddNotesButton", () => {
   it("renders correctly with correct text and icon", () => {
     render(<AddNotesButton onClick={() => {}} />);
     expect(screen.getByText("Add Notes")).toBeInTheDocument();
-    expect(screen.getByAltText("+")).toBeInTheDocument();
   });
 
   it("calls onClick when clicked", () => {

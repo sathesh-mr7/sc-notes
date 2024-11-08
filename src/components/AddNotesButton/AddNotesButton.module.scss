@@ -5,7 +5,8 @@
   align-items: center;
   gap: rem(10px);
 
-  >img {
-    height: rem(14px);
+  .plusIcon {
+    height: rem(18px);
+    fill: var(--white-color);
   }
 }

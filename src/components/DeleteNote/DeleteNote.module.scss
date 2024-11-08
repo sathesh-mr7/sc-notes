@@ -1,0 +1,8 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  .deleteIcon {
+    height: rem(24px);
+    fill: var(--sec-text-color);
+  }
+}

@@ -18,7 +18,7 @@
         border-radius: rem(8px);
         color: var(--text-color);
       }
-      
+
       &:hover {
         color: var(--text-color);
       }
@@ -28,12 +28,13 @@
   .innerList {
     color: var(--sec-text-color);
     list-style: none;
-    padding: rem(12px) rem(30px);
+    padding: rem(12px) rem(10px) rem(12px) rem(32px);
     position: relative;
     font-size: rem(14px);
 
     >li {
-      padding: rem(6px) 0;
+      padding: rem(10px) 0;
+
       &:hover {
         color: var(--text-color);
       }
@@ -57,13 +58,18 @@
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: rem(10px);
+    gap: rem(12px);
 
     .icon {
       height: rem(24px);
+      fill: var(--sec-text-color);
+
+      &.folderIcon, &.trashIcon {
+        height: rem(20px);
+      }
 
       &.right {
-        height: rem(14px);
+        height: rem(18px);
         margin-left: auto;
 
         &:hover {

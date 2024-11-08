@@ -1,10 +1,10 @@
 import React from 'react';
 
-import folderIcon from '../../assets/icons/folder.png';
+import { ReactComponent as FolderIcon } from '../../assets/icons/folder.svg';
+import { ReactComponent as PlusIcon } from '../../assets/icons/plus-sign.svg';
+import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import homeIcon from '../../assets/icons/home.png';
-import plusIcon from '../../assets/icons/plus-sign.png';
 import tagIcon from '../../assets/icons/tag.png';
-import trashIcon from '../../assets/icons/trash.png';
 
 import styles from './Navigation.module.scss';
 
@@ -24,9 +24,11 @@ const Navigation: React.FC<NavigationProps> = () => {
         </li>
         <li>
           <div className={styles.textWithIcon}>
-            <img className={styles.icon} src={folderIcon} alt='folders' />
+            {/* <img className={styles.icon} src={folderIcon} alt='folders' /> */}
+            <FolderIcon className={`${styles.icon} ${styles.folderIcon}`} />
             <span>Folders</span>
-            <img className={`${styles.icon} ${styles.right}`} src={plusIcon} alt='add folder' />
+            {/* <img className={`${styles.icon} ${styles.right}`} src={plusIcon} alt='add folder' /> */}
+            <PlusIcon className={`${styles.icon} ${styles.right}`} />
           </div>
           <ul className={styles.innerList}>
             <li>Folder Name 1</li>
@@ -38,7 +40,7 @@ const Navigation: React.FC<NavigationProps> = () => {
           <div className={styles.textWithIcon}>
             <img className={styles.icon} src={tagIcon} alt='labels' />
             <span>Labels</span>
-            <img className={`${styles.icon} ${styles.right}`} src={plusIcon} alt='add folder' />
+            <PlusIcon className={`${styles.icon} ${styles.right}`} />
           </div>
           <ul className={styles.innerList}>
             <li>Label Name 1</li>
@@ -48,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = () => {
         </li>
         <li>
           <div className={styles.textWithIcon}>
-            <img className={styles.icon} src={trashIcon} alt='trash' />
+            <TrashIcon className={`${styles.icon} ${styles.trashIcon}`} />
             <span>Trash</span>
           </div>
         </li>

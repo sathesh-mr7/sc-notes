@@ -6,7 +6,6 @@ describe('EmptyNoteSlot', () => {
   it('should render correctly', () => {
     render(<EmptyNoteSlot onClick={() => {}} />);
     expect(screen.getByText('Add note')).toBeInTheDocument();
-    expect(screen.getByAltText('+')).toBeInTheDocument();
   });
 
   it('should call onClick when clicked', () => {

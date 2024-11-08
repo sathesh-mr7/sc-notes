@@ -1,5 +1,5 @@
 import React from 'react';
-import plusIcon from '../../assets/icons/plus-sign.png';
+import { ReactComponent as PlusIcon } from "../../assets/icons/plus-sign.svg";
 import styles from './EmptyNoteSlot.module.scss';
 
 interface EmptyNoteSlotProps {
@@ -12,7 +12,7 @@ const EmptyNoteSlot: React.FC<EmptyNoteSlotProps> = ({
   return (
     <div className={styles.container} onClick={onClick}>
       <div className={styles.emptyNoteText}>
-        <img src={plusIcon} alt="+" />
+        <PlusIcon className={styles.plusIcon} />
         <span>Add note</span>
       </div>
     </div>
