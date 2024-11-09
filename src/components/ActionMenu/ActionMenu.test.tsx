@@ -8,14 +8,14 @@ describe('ActionMenu Component', () => {
   const onClickMock = jest.fn();
 
   test('renders all actions', () => {
-    render(<ActionMenu actions={actions} onClick={onClickMock} />);
+    render(<ActionMenu actions={actions} onClick={onClickMock} show={true} />);
     actions.forEach(action => {
       expect(screen.getByText(action)).toBeInTheDocument();
     });
   });
 
   test('calls onClick with correct action', () => {
-    render(<ActionMenu actions={actions} onClick={onClickMock} />);
+    render(<ActionMenu actions={actions} onClick={onClickMock} show={true} />);
     const actionItem = screen.getByText('Edit');
     fireEvent.click(actionItem);
     expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 'Edit');
@@ -23,7 +23,7 @@ describe('ActionMenu Component', () => {
 
   test('applies custom className', () => {
     const customClass = 'custom-class';
-    render(<ActionMenu actions={actions} onClick={onClickMock} className={customClass} />);
+    render(<ActionMenu actions={actions} onClick={onClickMock} className={customClass} show={true} />);
     const ulElement = screen.getByRole('list');
     expect(ulElement).toHaveClass(customClass);
   });
