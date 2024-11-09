@@ -1,0 +1,103 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  display: flex;
+  border: 1px solid var(--sec-border-color);
+  border-radius: rem(16px);
+  background-color: var(--primary-bg);
+  padding: rem(16px);
+  max-height: rem(222px);
+  cursor: pointer;
+  flex-direction: column;
+  transition: box-shadow 0.7s;
+
+  &.editMode {
+    position: fixed;
+    z-index: 11;
+    background-color: var(--primary-bg);
+    max-width: 400px;
+    left: 10%;
+    right: 10%;
+    margin: 0 auto;
+    transition: all 1s;
+  }
+
+  &:hover {
+    border-color: var(--border-color);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .ellipsisIcon {
+      height: rem(18px);
+      fill: var(--sec-text-color);
+    }
+
+    .closeIcon {
+      height: rem(18px);
+      fill: var(--sec-text-color);
+    }
+  }
+
+  .actionMenu {
+    position: relative;
+
+    &List {
+      position: absolute;
+      right: -5px;
+    }
+
+    .icon {
+      height: rem(18px);
+      width: rem(18px);
+      display: inline-block;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: rem(2px);
+      text-align: center;
+
+      &:active {
+        background-color: var(--primary-bg);
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    white-space: pre-line;
+
+    .title {
+      font-weight: 600;
+      font-size: rem(16px);
+      margin-bottom: 8px;
+    }
+
+    .note {
+      font-size: rem(12px);
+      color: var(--sec-text-color);
+      line-height: rem(18px);
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin-top: auto;
+
+    .createdDate {
+      font-size: rem(12px);
+      color: var(--sec-text-color);
+    }
+
+    .deleteIcon {
+      height: rem(20px);
+      fill: var(--sec-text-color);
+    }
+  }
+}
