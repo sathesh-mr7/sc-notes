@@ -6,7 +6,7 @@ interface Note {
   parent?: string | null;
   tag?: {
     text: string;
-    color: TagColor;
+    color: TagColor | undefined;
   };
   title: string;
 }
