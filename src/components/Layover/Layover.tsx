@@ -1,20 +1,9 @@
-import ReactDOM from 'react-dom';
-import { PORTAL_ROOT_ID } from '../../constants';
 import styles from './Layover.module.scss';
 
 interface LayoverProps {
-  children: React.ReactNode;
+  onClick?: () => void;
 }
-
-const Layover: React.FC<LayoverProps> = ({ children }) => {
-  const portalRoot = document.getElementById(PORTAL_ROOT_ID);
-  if (!portalRoot) return null;
-
-  return ReactDOM.createPortal(
-    <div className={styles.layover}>
-      {children}
-    </div>,
-    portalRoot
-  );
+const Layover: React.FC<LayoverProps> = ({ onClick }) => {
+  return <div onClick={onClick} data-testid='layover-id' className={styles.layover} />;
 }
 export default Layover;
