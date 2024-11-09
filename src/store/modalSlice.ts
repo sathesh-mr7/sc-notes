@@ -1,16 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: boolean = false;
+interface ModalState {
+  modalId: string;
+  visible: boolean;
+}
+const initialState: ModalState = {
+  modalId: "",
+  visible: false,
+};
 
 const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    showModal: (state) => {
-      return !state;
+    showModal: (state, action) => {
+      return {
+        modalId: action.payload,
+        visible: true,
+      };
     },
     closeModal: () => {
-      return false;
+      return initialState;
     },
   },
 });

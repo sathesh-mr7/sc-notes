@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './DeleteNote.module.scss';
 import { useDispatch } from 'react-redux';
 import { showModal } from '../../store/modalSlice';
+import { CONFIRM_MODAL_ID } from '../../constants';
 interface DeleteNoteProps {
   note: Note;
   children: React.ReactNode;
@@ -13,7 +14,7 @@ const DeleteNote: React.FC<DeleteNoteProps> = ({ note, children, onDelete }) => 
     <div className={styles.container} onClick={(event) => {
       event.stopPropagation();
       onDelete(note);
-      dispatch(showModal());
+      dispatch(showModal(CONFIRM_MODAL_ID));
     }}>
       {children}
     </div>

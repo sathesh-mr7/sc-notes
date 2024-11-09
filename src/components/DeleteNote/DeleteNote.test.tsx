@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import DeleteNote from './DeleteNote';
 import { showModal } from '../../store/modalSlice';
+import { CONFIRM_MODAL_ID } from '../../constants';
 
 const mockStore = configureStore([]);
 const note = { id: '1', content: 'Test Note', createdAt: 'Jan 23, 2025', title: 'Test Title' } as Note;
@@ -42,6 +43,6 @@ describe('DeleteNote Component', () => {
 
     expect(onDeleteMock).toHaveBeenCalledWith(note);
     const actions = store.getActions();
-    expect(actions).toEqual([showModal()]);
+    expect(actions).toEqual([showModal(CONFIRM_MODAL_ID)]);
   });
 });
