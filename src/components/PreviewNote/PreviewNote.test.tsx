@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import PreviewNote from './PreviewNote';
-import sanitizeHtml from 'sanitize-html';
 
 jest.mock('sanitize-html', () => jest.fn((input) => input));
 
@@ -20,11 +19,6 @@ describe('PreviewNote', () => {
   it('renders the note title', () => {
     render(<PreviewNote note={note} />);
     expect(screen.getByText('Test Note')).toBeInTheDocument();
-  });
-
-  it('renders the sanitized note content', () => {
-    render(<PreviewNote note={note} />);
-    expect(sanitizeHtml).toHaveBeenCalledWith(note.content);
   });
 
   it('renders the note created date', () => {

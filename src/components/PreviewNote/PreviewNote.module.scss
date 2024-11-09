@@ -1,45 +1,63 @@
 @import '../../shared-styles/mixin.scss';
 
 .container {
+  background-color: var(--primary-bg);
+  border-radius: rem(10px);
+  border: 1px solid var(--sec-border-color);
   display: flex;
   flex-direction: column;
-  flex: 1;
+  padding: rem(16px);
+  width: 100%;
 
-  .header {
-    display: flex;
-    padding-top: rem(5px);
-    padding-bottom: rem(10px);
+  .previewTitle {
+    font-size: rem(14px);
+    padding-bottom: rem(5px);
+    margin-bottom: rem(10px);
+    color: var(--sec-text-color);
+    border-bottom: 1px solid var(--sec-border-color);
   }
 
-  .content {
+  .previewContent {
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    white-space: pre-line;
 
-    .title {
-      font-weight: 600;
-      font-size: rem(16px);
-      margin-bottom: rem(8px);
-      margin-top: 0;
+    .header {
+      display: flex;
+      padding-top: rem(5px);
+      padding-bottom: rem(10px);
     }
 
-    .note {
-      font-size: rem(12px);
-      color: var(--sec-text-color);
-      line-height: rem(18px);
+    .content {
+      flex: 1;
+      white-space: pre-line;
+
+      .title {
+        font-weight: 600;
+        font-size: rem(16px);
+        margin-bottom: rem(8px);
+        margin-top: 0;
+      }
+
+      .note {
+        font-size: rem(12px);
+        color: var(--sec-text-color);
+        line-height: rem(18px);
+      }
     }
-  }
 
-  .footer {
-    padding: rem(5px) 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    display: flex;
-    margin-top: auto;
+    .footer {
+      padding: rem(5px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      margin-top: auto;
 
-    .createdDate {
-      font-size: rem(12px);
-      color: var(--sec-text-color);
+      .createdDate {
+        font-size: rem(12px);
+        color: var(--sec-text-color);
+      }
     }
   }
 }
