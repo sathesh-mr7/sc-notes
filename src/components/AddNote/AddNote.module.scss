@@ -1,0 +1,129 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  position: fixed;
+  display: flex;
+  height: 100%;
+  z-index: 11;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .wrapper {
+    width: rem(600px);
+    background-color: var(--sec-bg);
+    height: fit-content;
+    margin: 0 auto;
+    padding: rem(20px);
+    border-radius: rem(20px);
+    box-shadow: rem(1px) rem(2px) rem(20px) rgba(0, 0, 0, 0.3);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: rem(20px);
+
+    &Title {
+      margin: 0;
+    }
+
+    .closeButton {
+      cursor: pointer;
+
+      .closeIcon {
+        height: rem(20px);
+        fill: var(--sec-text-color);
+
+        &:hover {
+          fill: var(--text-color);
+        }
+      }
+    }
+  }
+
+  .section {
+    display: flex;
+    gap: rem(20px);
+
+    &Left {
+      flex-basis: 50%;
+    }
+
+    &Right {
+      flex-basis: 50%;
+      display: flex;
+    }
+
+    .previewTitle {
+      font-size: rem(14px);
+      padding-bottom: rem(5px);
+      margin-bottom: rem(10px);
+      color: var(--sec-text-color);
+      border-bottom: 1px solid var(--sec-border-color);
+    }
+
+    .previewContent {
+      background-color: var(--primary-bg);
+      border-radius: rem(10px);
+      border: 1px solid var(--sec-border-color);
+      display: flex;
+      flex-direction: column;
+      padding: rem(16px);
+      width: 100%;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20px);
+    padding: rem(10px);
+    border: 1px solid var(--sec-border-color);
+    border-radius: rem(10px);
+    background-color: var(--sec-bg);
+    min-height: rem(200px);
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-size: rem(14px);
+        color: var(--sec-text-color);
+        margin-bottom: rem(5px);
+      }
+    }
+
+    .input,
+    .textarea {
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: rem(10px);
+      border: 1px solid var(--sec-border-color);
+      outline: none;
+      border-radius: rem(5px);
+      background-color: var(--sec-bg);
+
+      &:focus {
+        border: 1px solid var(--border-color);
+      }
+    }
+
+    .textarea {
+      min-height: rem(100px);
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: rem(15px);
+    padding-top: rem(25px);
+
+    .button {
+      margin: 0;
+    }
+  }
+}
