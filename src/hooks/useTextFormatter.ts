@@ -1,7 +1,8 @@
 import { useState } from "react";
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from "sanitize-html";
+import { removeHtmlTags } from "../utils/helper";
 
-const useTextFormatter = () => {
+const useTextFormatter = (isSanitized?: boolean) => {
   const [formattedText, setFormattedText] = useState("");
   const formatText = (
     text: string,
@@ -14,8 +15,11 @@ const useTextFormatter = () => {
       "font-weight": formatOption.bold ? "bold" : "normal",
       "text-decoration": formatOption.underline ? "underline" : "none",
     };
+    let cleanHtml = sanitizeHtml(text);
 
-    const cleanHtml = sanitizeHtml(text);
+    if (isSanitized) {
+      cleanHtml = removeHtmlTags(text);
+    }
 
     const newText = cleanHtml.replace(
       cleanHtml,
