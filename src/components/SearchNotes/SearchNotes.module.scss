@@ -1,0 +1,20 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  position: relative;
+
+  .searchInput {
+    padding-left: rem(40px);
+    background-color: var(--sec-bg);
+  }
+
+  .searchIcon {
+    height: rem(18px);
+    fill: var(--sec-text-color);
+    position: absolute;
+    top: 50%;
+    left: rem(12px);
+    transform: translateY(-50%);
+    color: var(--sec-text-color);
+  }
+}
