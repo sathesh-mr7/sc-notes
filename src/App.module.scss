@@ -1,9 +1,31 @@
+@import "./shared-styles/mixin.scss";
 
-.app {
-  height: 100vh;
+.container {
+  height: auto;
   width: 100%;
   margin: 0;
   background-color: var(--body-bg);
   float: left;
   color: var(--text-color);
+
+  .topSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .section {
+    display: flex;
+    align-items: center;
+    gap: rem(20px);
+  }
+
+  .footer {
+    display: flex;
+    padding: rem(20px);
+    justify-content: center;
+    align-items: center;
+    font-size: rem(12px);
+    color: var(--sec-text-color);
+  }
 }
