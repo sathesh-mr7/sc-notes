@@ -11,6 +11,11 @@
   cursor: pointer;
   margin: 16px 0;
 
+  &.sm {
+    padding: rem(10px) rem(16px);
+    font-size: rem(12px);
+  }
+
   &:hover {
     opacity: 0.90;
   }
