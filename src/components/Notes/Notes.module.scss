@@ -1,0 +1,12 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  display: flex;
+  gap: rem(22px);
+  flex-wrap: wrap;
+
+  .note {
+    flex: 1 1 250px;
+  }
+}
+
