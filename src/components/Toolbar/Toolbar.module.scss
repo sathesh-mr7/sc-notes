@@ -1,0 +1,58 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: rem(15px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-bg);
+    border-radius: rem(5px);
+    padding: rem(5px) rem(10px);
+
+    .checkbox {
+      display: none;
+    }
+
+    .label {
+      height: rem(20px);
+      width: rem(20px);
+      padding: rem(2px);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: rem(5px);
+    }
+
+    .checkbox:checked+.label {
+      background-color: var(--sec-border-color);
+    }
+
+    .colorPalette {
+      border: solid 1px var(--border-color);
+      background-color: transparent;
+      border-radius: rem(5px);
+    }
+
+    .dropdown {
+      padding: rem(3px);
+      border-radius: rem(5px);
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+    }
+
+    .icon {
+      cursor: pointer;
+      height: 16px;
+      fill: var(--sec-text-color);
+
+      &:hover {
+        fill: var(--text-color);
+      }
+    }
+  }
+}
