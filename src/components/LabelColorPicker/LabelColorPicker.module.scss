@@ -1,0 +1,58 @@
+@import '../../shared-styles/mixin.scss';
+@import '../../shared-styles/tag-colors.scss';
+
+.container {
+  display: flex;
+  padding: rem(10px) 0;
+  gap: rem(10px);
+
+  .color {
+    width: rem(20px);
+    height: rem(20px);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+
+    &.selected {
+      border: rem(2px) solid var(--text-color);
+    }
+    &.reset {
+      color: $redTag;
+      font-size: rem(14px);
+      background-color: #fff;
+      border: rem(1px) solid var(--border-color);
+    }
+  }
+
+  .red {
+    background-color: $redTag;
+  }
+
+  .orange {
+    background-color: $orangeTag;
+  }
+
+  .yellow {
+    background-color: $yellowTag;
+  }
+
+  .green {
+    background-color: $greenTag;
+  }
+
+  .blue {
+    background-color: $blueTag;
+  }
+
+  .purple {
+    background-color: $purpleTag;
+  }
+
+  .pink {
+    background-color: $pinkTag;
+  }
+
+  .gray {
+    background-color: $grayTag;
+  }
+}
