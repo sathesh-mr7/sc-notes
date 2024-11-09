@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ThemeContext } from '../../store/themeContext';
 import { eventDebounce } from '../../utils/helper';
 
 import { ReactComponent as BoldIcon } from '../../assets/icons/bold.svg';
@@ -9,21 +8,16 @@ import { ReactComponent as ItalicIcon } from '../../assets/icons/italic.svg';
 import styles from './Toolbar.module.scss';
 
 interface ToolbarProps {
+  defaultOption: TextFormatOption;
   onOptionsChange: (selectedOption: TextFormatOption) => void;
 }
 
 const Toolbar: React.FC<ToolbarProps> = ({
+  defaultOption,
   onOptionsChange,
 }) => {
-  const themeContext = React.useContext(ThemeContext);
-  const [selectedOption, setSelectedOption] = useState<TextFormatOption>(() => ({
-    bold: false,
-    italic: false,
-    underline: false,
-    color: `${themeContext?.isDarkMode ? '#767994' : '#535353'}`,
-    fontSize: 12,
-  }));
-
+  const [selectedOption, setSelectedOption] = useState<TextFormatOption>(() => defaultOption);
+  
   useEffect(() => {
     onOptionsChange(selectedOption);
   }, [JSON.stringify(selectedOption)]);
@@ -32,19 +26,19 @@ const Toolbar: React.FC<ToolbarProps> = ({
     <div className={styles.container}>
       <ul className={styles.toolbar}>
         <li className={styles.selected}>
-          <input data-testid="bold-text" id="bold-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, bold: e.target.checked }))} className={styles.checkbox} />
+          <input checked={selectedOption.bold} data-testid="bold-text" id="bold-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, bold: e.target.checked }))} className={styles.checkbox} />
           <label className={styles.label} htmlFor="bold-text">
             <BoldIcon className={styles.icon} />
           </label>
         </li>
         <li>
-          <input data-testid="italic-text" id="italic-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, italic: e.target.checked }))} className={styles.checkbox} />
+          <input checked={selectedOption.italic} data-testid="italic-text" id="italic-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, italic: e.target.checked }))} className={styles.checkbox} />
           <label className={styles.label} htmlFor="italic-text">
             <ItalicIcon className={styles.icon} />
           </label>
         </li>
         <li>
-          <input data-testid="underline-text" id="underline-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, underline: e.target.checked }))} className={styles.checkbox} />
+          <input checked={selectedOption.underline} data-testid="underline-text" id="underline-text" type="checkbox" onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, underline: e.target.checked }))} className={styles.checkbox} />
           <label className={styles.label} htmlFor="underline-text">
             <UnderlineIcon className={styles.icon} />
           </label>
@@ -53,7 +47,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
           <input data-testid="color-text" id="color-text" type="color" onChange={(e) => eventDebounce(() => setSelectedOption((prevOption) => ({ ...prevOption, color: e.target.value })), 1000)()} className={styles.colorPalette} />
         </li>
         <li>
-          <select data-testid="font-size" className={styles.dropdown} defaultValue={12} onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, fontSize: Number(e.target.value) }))}>
+          <select data-testid="font-size" className={styles.dropdown} defaultValue={selectedOption.fontSize} onChange={(e) => setSelectedOption((prevOption) => ({ ...prevOption, fontSize: Number(e.target.value) }))}>
             <option value={11}>11</option>
             <option value={12}>12</option>
             <option value={14}>14</option>

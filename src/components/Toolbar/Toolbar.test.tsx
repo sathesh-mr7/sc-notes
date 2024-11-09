@@ -8,7 +8,7 @@ describe('Toolbar Component', () => {
   const renderToolbar = (isDarkMode = false) => {
     return render(
       <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode: jest.fn() }}>
-        <Toolbar onOptionsChange={mockOnOptionsChange} />
+        <Toolbar defaultOption={{ bold: false, italic: false, underline: false, fontSize: 12, color: "black" }} onOptionsChange={mockOnOptionsChange} />
       </ThemeContext.Provider>
     );
   };
