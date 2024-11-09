@@ -18,7 +18,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
 
   return (
     <div className={styles.container}>
-      <input id={id} type="checkbox" checked={isChecked} onChange={(e) => onToggle(e.target.checked)} className={styles.checkbox} name="test" />
+      <input id={id} type="checkbox" checked={isChecked} onChange={(e) => onToggle(e.target.checked)} className={styles.checkbox} name={id} />
       <label className={styles.label} htmlFor={id}>
         <span className={`${styles.switch} ${isChecked ? styles.selected : ''}`}>{onText}</span>
         <span className={`${styles.switch} ${!isChecked ? styles.selected : ''}`}>{offText}</span>
