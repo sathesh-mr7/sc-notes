@@ -9,11 +9,12 @@ interface PreviewNoteProps {
 const PreviewNote: React.FC<PreviewNoteProps> = ({ note }) => {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
+      {note.tag ? <header className={styles.header}>
         <div className={styles.tags}>
-          {note.tag ? <Tag color={note.tag.color} text={note.tag.text} /> : null}
+          <Tag color={note.tag.color} text={note.tag.text} />
         </div>
       </header>
+        : null}
       <div className={styles.content}>
         <h3 className={styles.title}>{note.title}</h3>
         <p data-testid="note-content" className={styles.note} dangerouslySetInnerHTML={{ __html: sanitizeHtml(note.content) }} />
