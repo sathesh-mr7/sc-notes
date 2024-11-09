@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import PreviewNote from './PreviewNote';
 
-jest.mock('sanitize-html', () => jest.fn((input) => input));
-
 describe('PreviewNote', () => {
   const note = {
     id: '1',
