@@ -1,0 +1,43 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .header {
+    display: flex;
+    padding-top: rem(5px);
+  }
+
+  .content {
+    flex: 1;
+    white-space: pre-line;
+
+    .title {
+      font-weight: 600;
+      font-size: rem(16px);
+      margin-bottom: rem(8px);
+    }
+
+    .note {
+      font-size: rem(12px);
+      color: var(--sec-text-color);
+      line-height: rem(18px);
+    }
+  }
+
+  .footer {
+    padding: rem(5px) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin-top: auto;
+
+    .createdDate {
+      font-size: rem(12px);
+      color: var(--sec-text-color);
+    }
+  }
+}
