@@ -11,6 +11,11 @@
   cursor: pointer;
   margin: 16px 0;
 
+  &.xs {
+    padding: rem(8px) rem(12px);
+    font-size: rem(10px);
+  }
+
   &.sm {
     padding: rem(10px) rem(16px);
     font-size: rem(12px);

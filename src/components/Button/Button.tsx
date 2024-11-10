@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
-  size?: 'sm' | 'md';
+  size?: 'xs' | 'sm' | 'md';
   variant?: 'primary' | 'secondary' | 'tertiary';
   corner?: 'default' | 'edged';
 }
