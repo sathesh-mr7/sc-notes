@@ -4,7 +4,7 @@ import { RootState } from "../../store/reduxStore";
 import { closeModal, showModal } from "../../store/modalSlice";
 import { removeFolder } from "../../store/folderSlice";
 
-import { CONFIRM_DELETE_FOLDER_MODAL_ID } from "../../constants";
+import { BASE_SITE_PATH, CONFIRM_DELETE_FOLDER_MODAL_ID } from "../../constants";
 
 import SubList from "../SubList/SubList";
 import Portal from "../Portal/Portal";
@@ -35,7 +35,7 @@ const Folders: React.FC = () => {
 
   return (
     <>
-      <SubList basePath="/folders" onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => ({ id: folder.id, text: folder.name }))} emptyListMessage='No folders found' />
+      <SubList basePath={`${BASE_SITE_PATH}/folders`} onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => ({ id: folder.id, text: folder.name }))} emptyListMessage='No folders found' />
       {modal.visible ?
         <Portal>
           <Layover onClick={handleOnClose} />

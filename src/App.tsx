@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
+import { BASE_SITE_PATH } from './constants';
 
 import AllNotes from './components/AllNotes/AllNotes';
 import FolderNotes from './components/FolderNotes/FolderNotes';
@@ -42,21 +43,21 @@ function App() {
               {/* Routes */}
               <Routes>
                 {/* Home */}
-                <Route path="/" element={
+                <Route path={`${BASE_SITE_PATH}`} element={
                   <section className={styles.section}>
                     <TopPanel />
                     <AllNotes />
                   </section>
                 } />
                 {/* Folders */}
-                <Route path="/folders/:folderId" element={
+                <Route path={`${BASE_SITE_PATH}/folders/:folderId`} element={
                   <section className={styles.section}>
                     <TopPanel />
                     <FolderNotes />
                   </section>
                 } />
                 {/* Trash */}
-                <Route path="/trash" element={
+                <Route path={`${BASE_SITE_PATH}/trash`} element={
                   <section className={styles.section}>
                     <TrashedNotes />
                   </section>
