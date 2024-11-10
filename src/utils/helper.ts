@@ -19,6 +19,14 @@ export function eventDebounce(callback: () => void, delay: number): () => void {
   };
 }
 
+export const debounce = (callback: (...args: any[]) => void, delay: number) => {
+  let timeoutId: NodeJS.Timeout;
+  return (...args: any[]) => {
+  if (timeoutId) clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => callback(...args), delay);
+  };
+};
+
 export function removeHtmlTags(text: string): string {
   const clean = /<.*?>/g;
   return text.replace(clean, "");
@@ -47,7 +55,7 @@ export function getTextFormatOptionFormHtml(html: string): TextFormatOption {
       bold: false,
       italic: false,
       underline: false,
-      color: 'black',
+      color: "#535353",
       fontSize: 12,
     };
   }
