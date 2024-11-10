@@ -9,7 +9,7 @@ import SearchNotes from '../SearchNotes/SearchNotes';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
 import styles from './TopPanel.module.scss';
-import { fitlerNotes, resetFilter } from '../../store/notesSlice';
+import { filterNotes, resetFilter } from '../../store/notesSlice';
 
 const TopPanel: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const TopPanel: React.FC = () => {
       dispatch(resetFilter());
       return;
     }
-    dispatch(fitlerNotes(text));
+    dispatch(filterNotes(text));
   }
   return (
     <section className={styles.container}>

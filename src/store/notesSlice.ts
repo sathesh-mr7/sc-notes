@@ -24,11 +24,12 @@ const notesSlice = createSlice({
       }
       setNotes(state);
     },
-    fitlerNotes: (state, action) => {
+    filterNotes: (state, action) => {
+      const query = action.payload.toLowerCase();
       return state.filter(
-        (note) => (note.title.includes(action.payload) ||
-          note.content.includes(action.payload) ||
-          note.tag?.text.includes(action.payload)),
+        (note) => (note.title.toLowerCase().includes(query) ||
+          note.content.toLowerCase().includes(query) ||
+          note.tag?.text.toLowerCase().includes(query)),
       );
     },
     resetFilter: () => {
@@ -37,6 +38,6 @@ const notesSlice = createSlice({
   },
 });
 
-export const { addNote, removeNote, updateNote, fitlerNotes, resetFilter } = notesSlice.actions;
+export const { addNote, removeNote, updateNote, filterNotes, resetFilter } = notesSlice.actions;
 
 export default notesSlice.reducer;
