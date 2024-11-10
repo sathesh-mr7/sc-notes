@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/reduxStore";
 import { addFolder } from "../../store/folderSlice";
 
 import { formatDate } from "../../utils/helper";
 
 import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 
 import styles from './CreateFolder.module.scss';
-import { RootState } from "../../store/reduxStore";
 interface CreateFolderProps {
   className?: string;
   onClose: () => void;
@@ -52,7 +53,7 @@ const CreateFolder: React.FC<CreateFolderProps> = ({
       </div>
       <div className={styles.field}>
         <label htmlFor="label" className={styles.label}>Folder Name</label>
-        <input className={`${styles.input} ${hasError ? styles.inputError : ''}`} type="text" id="label" value={folderName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
+        <Input className={`${styles.input} ${hasError ? styles.inputError : ''}`} type="text" id="label" value={folderName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
         {hasError && <div className={styles.error}>{errorMessage}</div>}
       </div>
       <footer className={styles.footer}>
