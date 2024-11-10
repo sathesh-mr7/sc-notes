@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Folders from '../Folders/Folders';
 
 import { ReactComponent as FolderIcon } from '../../assets/icons/folder.svg';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus-sign.svg';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
+
 import homeIcon from '../../assets/icons/home.png';
 import tagIcon from '../../assets/icons/tag.png';
 
 import styles from './Navigation.module.scss';
+import CreateFolder from '../CreateFolder/CreateFolder';
 
 
 interface NavigationProps {
 
 }
 const Navigation: React.FC<NavigationProps> = () => {
+  const [showCreateFolder, setShowCreateFolder] = useState(false);
+  const handleCreateFolder = () => {
+
+  }
+  const handleOnAddFolder = () => {
+    setShowCreateFolder(!showCreateFolder);
+  }
   return (
     <div className={styles.container}>
+      {showCreateFolder ? <div className={styles.overlay} onClick={() => setShowCreateFolder(false)}></div> : null}
       <ul className={styles.list}>
         <li className={styles.selected}>
           <div className={styles.textWithIcon}>
@@ -24,23 +35,17 @@ const Navigation: React.FC<NavigationProps> = () => {
         </li>
         <li>
           <div className={styles.textWithIcon}>
-            {/* <img className={styles.icon} src={folderIcon} alt='folders' /> */}
             <FolderIcon className={`${styles.icon} ${styles.folderIcon}`} />
             <span>Folders</span>
-            {/* <img className={`${styles.icon} ${styles.right}`} src={plusIcon} alt='add folder' /> */}
-            <PlusIcon className={`${styles.icon} ${styles.right}`} />
+            <i className={`${styles.addFolder} ${styles.right}`} onClick={handleOnAddFolder}><PlusIcon className={`${styles.icon}`} /></i>
           </div>
-          <ul className={styles.innerList}>
-            <li>Folder Name 1</li>
-            <li>Folder Name 2</li>
-            <li>Folder Name 3</li>
-          </ul>
+          {showCreateFolder ? <CreateFolder className={styles.createFolder} onClose={() => setShowCreateFolder(false)} /> : null}
+          <Folders />
         </li>
         <li>
           <div className={styles.textWithIcon}>
             <img className={styles.icon} src={tagIcon} alt='labels' />
             <span>Labels</span>
-            <PlusIcon className={`${styles.icon} ${styles.right}`} />
           </div>
           <ul className={styles.innerList}>
             <li>Label Name 1</li>
