@@ -8,16 +8,10 @@
   float: left;
   color: var(--text-color);
 
-  .topSection {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-
   .section {
     display: flex;
-    align-items: center;
     gap: rem(20px);
+    flex-direction: column;
   }
 
   .footer {

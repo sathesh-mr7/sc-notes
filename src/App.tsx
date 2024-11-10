@@ -1,22 +1,22 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
-import { showModal } from './store/modalSlice';
 
-import { Layout, Logo, MainPanel, Navigation, SidePanel, ToggleSwitch } from './components';
-import AddNotesButton from './components/AddNotesButton/AddNotesButton';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
-import FilterBar from './components/FilterBar/FilterBar';
-import Notes from './components/Notes/Notes';
+import AllNotes from './components/AllNotes/AllNotes';
+import FolderNotes from './components/FolderNotes/FolderNotes';
+import Layout from './components/Layout/Layout';
+import Logo from './components/Logo/Logo';
+import MainPanel from './components/MainPanel/MainPanel';
+import Navigation from './components/Navigation/Navigation';
 import PortalRoot from './components/PortalRoot/PortalRoot';
-import SearchNotes from './components/SearchNotes/SearchNotes';
+import SidePanel from './components/SidePanel/SidePanel';
+import TopPanel from './components/TopPanel/TopPanel';
+import TrashedNotes from './components/TrashedNotes/TrashedNotes';
 
 import styles from './App.module.scss';
-import { NOTE_MODAL_ID } from './constants';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('isDarkMode') === 'true');
-  const dispatch = useDispatch();
 
   const toggleDarkMode = () => {
     localStorage.setItem('isDarkMode', JSON.stringify(!isDarkMode));
@@ -28,29 +28,45 @@ function App() {
       <div className={styles.container} data-theme={isDarkMode ? 'dark' : 'light'}>
         <PortalRoot />
         <Layout>
-          <SidePanel>
-            <Logo />
-            <div className="divider" />
-            <Navigation />
-            <div className="divider" />
-          </SidePanel>
-          <MainPanel>
-            <section className={`${styles.section} ${styles.topSection}`}>
-              <Breadcrumbs />
-              <ToggleSwitch labels={['dark', 'light']} id="mode" onToggle={toggleDarkMode} isChecked={isDarkMode} />
-            </section>
-            <section className={styles.section}>
-              <AddNotesButton onClick={() => dispatch(showModal(NOTE_MODAL_ID))} />
-              <SearchNotes onChange={(text) => console.log(text)} />
-            </section>
-            <section className={`${styles.filterBar} ${styles.section}`}>
-              <FilterBar />
-            </section>
-            <section className={`${styles.filterBar} ${styles.section}`}>
-              <Notes />
-            </section>
-          </MainPanel>
+          <BrowserRouter>
+            {/* Side Panel with Navigation Menu */}
+            <SidePanel>
+              <Logo />
+              <div className="divider" />
+              <Navigation />
+              <div className="divider" />
+            </SidePanel>
+
+            {/* Main Panel with Notes */}
+            <MainPanel>
+              {/* Routes */}
+              <Routes>
+                {/* Home */}
+                <Route path="/" element={
+                  <section className={styles.section}>
+                    <TopPanel />
+                    <AllNotes />
+                  </section>
+                } />
+                {/* Folders */}
+                <Route path="/folders/:folderId" element={
+                  <section className={styles.section}>
+                    <TopPanel />
+                    <FolderNotes />
+                  </section>
+                } />
+                {/* Trash */}
+                <Route path="/trash" element={
+                  <section className={styles.section}>
+                    <TrashedNotes />
+                  </section>
+                } />
+              </Routes>
+            </MainPanel>
+          </BrowserRouter>
         </Layout>
+
+        {/* Footer */}
         <footer className={styles.footer}>
           <div className={styles.wrapper}>
             <p>© 2024 Sathesh Kumar</p>
