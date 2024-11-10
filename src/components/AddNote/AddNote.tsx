@@ -51,8 +51,8 @@ const AddNote: React.FC<AddNoteProps> = ({
       }));
     } else {
       dispatch(addNote({
-        id:
-          title,
+        id: crypto.randomUUID(),
+        title,
         content: formattedText,
         createdAt: formatDate(new Date()),
         updatedAt: formatDate(new Date()),
