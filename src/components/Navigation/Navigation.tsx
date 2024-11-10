@@ -8,7 +8,6 @@ import { ReactComponent as PlusIcon } from '../../assets/icons/plus-sign.svg';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 
 import homeIcon from '../../assets/icons/home.png';
-import tagIcon from '../../assets/icons/tag.png';
 
 import styles from './Navigation.module.scss';
 
