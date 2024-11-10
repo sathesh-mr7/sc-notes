@@ -1,6 +1,7 @@
 import {
   LOCAL_STORAGE_FOLDER_KEY,
   LOCAL_STORAGE_NOTES_KEY,
+  LOCAL_STORAGE_TRASH_KEY,
 } from "../constants";
 
 function getLocalStorageItem(key: string) {
@@ -26,4 +27,12 @@ export function getFolder(): Folder[] {
 
 export function setFolder(folders: Folder[]) {
   setLocalStorageItem(LOCAL_STORAGE_FOLDER_KEY, folders);
+}
+
+export function addNotesToTrash(notes: Note[]) {
+  setLocalStorageItem(LOCAL_STORAGE_TRASH_KEY, notes);
+}
+
+export function getNotesFromTrash(): Note[] {
+  return getLocalStorageItem(LOCAL_STORAGE_TRASH_KEY) ?? [];
 }
