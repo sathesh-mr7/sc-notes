@@ -1,27 +1,34 @@
+import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import styles from './SubList.module.scss';
 
 interface SubListProps {
-  listItems: string[];
+  basePath: string;
+  listItems: { id: string, text: string }[];
   emptyListMessage: string;
-  onRemoveItem: (item: string) => void;
+  onRemoveItem?: (item: string) => void;
 }
 
 const SubList: React.FC<SubListProps> = ({
+  basePath,
   listItems,
   emptyListMessage,
   onRemoveItem,
 }) => {
+  const { pathname } = useLocation();
+
   return (
     <div className={styles.container}>
       {listItems.length > 0 ? (
         <ul className={styles.subList}>
-          {listItems.map((item) => (
-            <li key={item}>
-              <span>{item}</span>
-              <span className={styles.removeList} onClick={() => onRemoveItem(item)}>
-                <TrashIcon className={styles.trashIcon} />
-              </span>
+          {listItems.map(({ id, text }) => (
+            <li key={id}>
+              <Link className={`${styles.link} ${pathname.indexOf(id) >= 0 ? styles.selected : ''}`} to={`${basePath}/${id}`}>
+                <span className={styles.text}>{text}</span>
+                {!!onRemoveItem ? (<span className={styles.removeList} onClick={() => onRemoveItem(text)}>
+                  <TrashIcon className={styles.trashIcon} />
+                </span>) : null}
+              </Link>
             </li>
           ))}
         </ul>) :
