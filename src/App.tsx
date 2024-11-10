@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
 import { BASE_SITE_PATH } from './constants';
 
@@ -29,7 +29,7 @@ function App() {
       <div className={styles.container} data-theme={isDarkMode ? 'dark' : 'light'}>
         <PortalRoot />
         <Layout>
-          <BrowserRouter>
+          <HashRouter basename={BASE_SITE_PATH}>
             {/* Side Panel with Navigation Menu */}
             <SidePanel>
               <Logo />
@@ -43,28 +43,29 @@ function App() {
               {/* Routes */}
               <Routes>
                 {/* Home */}
-                <Route path={`${BASE_SITE_PATH}`} element={
+                <Route path="/" element={
                   <section className={styles.section}>
                     <TopPanel />
                     <AllNotes />
                   </section>
                 } />
                 {/* Folders */}
-                <Route path={`${BASE_SITE_PATH}/folders/:folderId`} element={
+                <Route path="/folders/:folderId" element={
                   <section className={styles.section}>
                     <TopPanel />
                     <FolderNotes />
                   </section>
                 } />
                 {/* Trash */}
-                <Route path={`${BASE_SITE_PATH}/trash`} element={
+                <Route path="/trash" element={
                   <section className={styles.section}>
                     <TrashedNotes />
                   </section>
                 } />
               </Routes>
+
             </MainPanel>
-          </BrowserRouter>
+          </HashRouter>
         </Layout>
 
         {/* Footer */}

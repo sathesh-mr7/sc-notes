@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { BASE_SITE_PATH } from '../../constants';
-
 import CreateFolder from '../CreateFolder/CreateFolder';
 import Folders from '../Folders/Folders';
 import { ReactComponent as FolderIcon } from '../../assets/icons/folder.svg';
@@ -28,8 +26,8 @@ const Navigation: React.FC<NavigationProps> = () => {
     <div className={styles.container}>
       {showCreateFolder ? <div className={styles.overlay} onClick={() => setShowCreateFolder(false)}></div> : null}
       <ul className={styles.list}>
-        <li className={location.pathname === `${BASE_SITE_PATH}` ? styles.selected : ''}>
-          <Link className={styles.link} to={`${BASE_SITE_PATH}`}>
+        <li className={location.pathname === '/' ? styles.selected : ''}>
+          <Link className={styles.link} to="/">
             <div className={styles.textWithIcon}>
               <img className={styles.icon} src={homeIcon} alt='home' />
               <span>Home</span>
@@ -46,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = () => {
           <Folders />
         </li>
         <li className={location.pathname.indexOf('/trash') >= 0 ? styles.selected : ''}>
-          <Link className={styles.link} to={`${BASE_SITE_PATH}/trash`}>
+          <Link className={styles.link} to="/trash">
             <div className={styles.textWithIcon}>
               <TrashIcon className={`${styles.icon} ${styles.trashIcon}`} />
               <span>Trash</span>
