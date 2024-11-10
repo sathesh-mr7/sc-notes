@@ -1,0 +1,79 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: rem(12px);
+  background-color: var(--sec-bg);
+  position: absolute;
+  gap: rem(12px);
+  border-radius: rem(10px);
+  box-shadow: 0px rem(4px) rem(4px) rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  min-width: 180px;
+
+  .title {
+    font-size: rem(14px);
+    color: var(--text-color);
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .closeButton {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      color: var(--sec-text-color);
+      font-size: rem(16px);
+
+      .icon {
+        height: 18px;
+        fill: var(--sec-text-color);
+
+        &:hover {
+          fill: var(--text-color);
+        }
+      }
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8px);
+
+    .label {
+      font-size: rem(12px);
+      color: var(--sec-text-color);
+    }
+
+    .input {
+      padding: rem(8px);
+      border: rem(1px) solid var(--border-color);
+      border-radius: rem(8px);
+      font-size: rem(12px);
+      color: var(--text-color);
+      background-color: var(--primary-bg);
+
+      &Error {
+        border-color: var(--error-color);
+      }
+    }
+
+    .error {
+      font-size: rem(10px);
+      color: var(--error-color);
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: rem(8px);
+
+    .button {
+      margin: 0;
+    }
+  }
+}
