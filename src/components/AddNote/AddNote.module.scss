@@ -113,6 +113,10 @@
 
     .textarea {
       min-height: rem(100px);
+
+      &.error {
+        border: 1px solid var(--error-color);
+      }
     }
   }
 

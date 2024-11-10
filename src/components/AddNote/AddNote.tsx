@@ -13,6 +13,8 @@ import { closeModal } from '../../store/modalSlice';
 import Toolbar from '../Toolbar/Toolbar';
 import useTextFormatter from '../../hooks/useTextFormatter';
 import LabelColorPicker from '../LabelColorPicker/LabelColorPicker';
+import { useParams } from 'react-router-dom';
+import Input from '../Input/Input';
 
 interface AddNoteProps {
   note?: Note;
@@ -24,6 +26,7 @@ const AddNote: React.FC<AddNoteProps> = ({
   onClose,
 }) => {
   const dispatch = useDispatch();
+  const folderId = useParams<{ folderId: string }>().folderId;
   const { formattedText, formatText } = useTextFormatter(!!note);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const noteId = note?.id ?? crypto.randomUUID();
@@ -32,12 +35,14 @@ const AddNote: React.FC<AddNoteProps> = ({
   const [labelName, setLabelName] = useState(note?.tag?.text || '');
   const [labelColor, setLabelColor] = useState<TagColor | undefined>(note?.tag?.color);
   const [textFormatOption, setTextFormatOption] = useState<TextFormatOption>(() => getTextFormatOptionFormHtml(content));
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (content && !!textFormatOption) {
       formatText(content, textFormatOption);
     }
   }, [content, JSON.stringify(textFormatOption)]);
+
 
   const handleOnSave = (isUpdateNote: boolean) => {
     if (isUpdateNote) {
@@ -50,16 +55,23 @@ const AddNote: React.FC<AddNoteProps> = ({
         ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
       }));
     } else {
-      dispatch(addNote({
-        id: crypto.randomUUID(),
-        title,
-        content: formattedText,
-        createdAt: formatDate(new Date()),
-        updatedAt: formatDate(new Date()),
-        ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
-      }));
+      if (formattedText) {
+        dispatch(addNote({
+          id: crypto.randomUUID(),
+          title,
+          content: formattedText,
+          createdAt: formatDate(new Date()),
+          updatedAt: formatDate(new Date()),
+          ...(folderId ? { folder: folderId } : {}),
+          ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
+        }));
+      } else {
+        textAreaRef.current?.focus();
+        setHasError(true);
+        return;
+      }
     }
-    dispatch(closeModal());
+    handleOnClose();
   };
 
   const handleOnClose = () => {
@@ -85,13 +97,13 @@ const AddNote: React.FC<AddNoteProps> = ({
             <div className={styles.content}>
               <div className={styles.field}>
                 <label htmlFor="title" className={styles.label}>Note Title</label>
-                <input className={styles.input} type="text" id="title" value={title} placeholder="Enter title" onChange={(event) => setTitle(event.target.value)} />
+                <Input className={styles.input} id="title" type='text' value={title} placeholder="Enter title" onChange={(event) => setTitle(event.target.value)} />
               </div>
               <div className={styles.field}>
                 <label htmlFor="content" className={styles.label}>Note</label>
                 <textarea
                   ref={textAreaRef}
-                  className={styles.textarea} id="content" value={removeHtmlTags(content)}
+                  className={`${styles.textarea} ${hasError ? styles.error : ''}`} id="content" value={removeHtmlTags(content)}
                   placeholder="Enter Note"
                   onChange={handleTextAreaChange}
                 />
@@ -99,7 +111,7 @@ const AddNote: React.FC<AddNoteProps> = ({
               </div>
               <div className={styles.field}>
                 <label htmlFor="label" className={styles.label}>Label <small>(Optional)</small></label>
-                <input className={styles.input} type="text" id="label" value={labelName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
+                <Input className={styles.input} id="label" type='text' value={labelName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
                 <LabelColorPicker onColorPick={setLabelColor} selectedColor={labelColor} />
               </div>
             </div>
