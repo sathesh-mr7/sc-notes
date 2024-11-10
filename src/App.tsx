@@ -5,7 +5,7 @@ import { ThemeProvider } from './store/themeContext';
 import AllNotes from './components/AllNotes/AllNotes';
 import FolderNotes from './components/FolderNotes/FolderNotes';
 import Logo from './components/Logo/Logo';
-import Layout from './components/Layout/Layout';
+import Layout from './components/AppLayout/Layout';
 import MainPanel from './components/MainPanel/MainPanel';
 import Navigation from './components/Navigation/Navigation';
 import PortalRoot from './components/PortalRoot/PortalRoot';
