@@ -35,7 +35,7 @@ const Folders: React.FC = () => {
 
   return (
     <>
-      <SubList onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => folder.name)} emptyListMessage='No folders found' />
+      <SubList basePath="/folders" onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => ({ id: folder.id, text: folder.name }))} emptyListMessage='No folders found' />
       {modal.visible ?
         <Portal>
           <Layover onClick={handleOnClose} />

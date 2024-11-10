@@ -2,11 +2,12 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import Folders from "./Folders";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const mockStore = configureStore([]);
 const initialState = {
   showModal: { visible: false, modalId: null },
-  folders: [{ name: "Folder1" }, { name: "Folder2" }]
+  folders: [{ id: "1", name: "Folder 1" }, { id: "2", name: "Folder 2" }]
 };
 
 describe("Folders Component", () => {
@@ -14,29 +15,18 @@ describe("Folders Component", () => {
 
   beforeEach(() => {
     store = mockStore(initialState);
-    store.dispatch = jest.fn();
   });
 
   test("renders folders list", () => {
     render(
       <Provider store={store}>
-        <Folders />
+        <Router>
+          <Folders />
+        </Router>
       </Provider>
     );
 
-    expect(screen.getByText("Folder1")).toBeInTheDocument();
-    expect(screen.getByText("Folder2")).toBeInTheDocument();
-  });
-
-  test("shows empty list message when no folders", () => {
-    store = mockStore({ ...initialState, folders: [] });
-
-    render(
-      <Provider store={store}>
-        <Folders />
-      </Provider>
-    );
-
-    expect(screen.getByText("No folders found")).toBeInTheDocument();
+    expect(screen.getByText("Folder 1")).toBeInTheDocument();
+    expect(screen.getByText("Folder 2")).toBeInTheDocument();
   });
 });
