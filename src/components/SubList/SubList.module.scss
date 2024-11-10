@@ -1,0 +1,61 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  .subList {
+    color: var(--sec-text-color);
+    list-style: none;
+    padding: rem(12px) rem(10px) rem(12px) rem(32px);
+    position: relative;
+    font-size: rem(14px);
+
+    >li {
+      padding: rem(10px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .removeList {
+        display: none;
+
+        .trashIcon {
+          height: rem(14px);
+          fill: var(--sec-text-color);
+
+          &:hover {
+            fill: var(--error-color);
+          }
+        }
+      }
+
+      &:hover {
+        color: var(--text-color);
+
+        .removeList {
+          display: flex;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      height: 60%;
+      width: rem(2px);
+      background-color: var(--border-color);
+      position: absolute;
+      left: rem(10px);
+      top: auto;
+      bottom: auto;
+    }
+  }
+
+  .emptyListMessage {
+    color: var(--sec-text-color);
+    font-size: rem(12px);
+    margin-top: rem(16px);
+    border-radius: rem(8px);
+    border: dashed rem(1px) var(--border-color);
+    padding: rem(8px) rem(12px);
+    text-align: center;
+  }
+}
