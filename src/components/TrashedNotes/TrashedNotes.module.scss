@@ -1,0 +1,14 @@
+@import '../../shared-styles/mixin.scss';
+
+.emptyTrash {
+  display: flex;
+  margin-bottom: rem(10px);
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  border: dashed rem(2px) var(--border-color);
+  border-radius: rem(10px);
+  color: var(--sec-text-color);
+}
