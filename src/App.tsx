@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
-import { BASE_SITE_PATH } from './constants';
 
 import AllNotes from './components/AllNotes/AllNotes';
 import FolderNotes from './components/FolderNotes/FolderNotes';
@@ -29,7 +28,7 @@ function App() {
       <div className={styles.container} data-theme={isDarkMode ? 'dark' : 'light'}>
         <PortalRoot />
         <Layout>
-          <HashRouter basename={BASE_SITE_PATH}>
+          <BrowserRouter>
             {/* Side Panel with Navigation Menu */}
             <SidePanel>
               <Logo />
@@ -65,7 +64,7 @@ function App() {
               </Routes>
 
             </MainPanel>
-          </HashRouter>
+          </BrowserRouter>
         </Layout>
 
         {/* Footer */}
