@@ -9,4 +9,5 @@ interface Note {
     color: TagColor | undefined;
   };
   title: string;
+  folder?: string;
 }
