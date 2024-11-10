@@ -12,7 +12,7 @@ import AddNote from '../AddNote/AddNote';
 
 import styles from './Notes.module.scss';
 import Layover from '../Layover/Layover';
-import { CONFIRM_MODAL_ID, NOTE_MODAL_ID } from '../../constants';
+import { CONFIRM_DELETE_NOTE_MODAL_ID, NOTE_MODAL_ID } from '../../constants';
 
 interface NotesProps {
 
@@ -22,7 +22,6 @@ const Notes: React.FC<NotesProps> = () => {
   const modal = useSelector((state: RootState) => state.showModal);
   const dispatch = useDispatch();
   const [selectedNote, setSelectedNote] = useState<Note>();
-
   const handleOnNoteClick = (note: Note) => {
     setSelectedNote(note);
     dispatch(showModal(NOTE_MODAL_ID));
@@ -31,6 +30,17 @@ const Notes: React.FC<NotesProps> = () => {
   const handleOnEmptySlotClick = () => {
     setSelectedNote(undefined);
     dispatch(showModal(NOTE_MODAL_ID));
+  }
+
+  const handleOnNoteDelete = () => {
+    setSelectedNote(undefined);
+    dispatch(removeNote(selectedNote?.id));
+    dispatch(closeModal());
+  }
+
+  const handleOnNoteClose = () => {
+    setSelectedNote(undefined);
+    dispatch(closeModal());
   }
   return (
     <>
@@ -42,13 +52,13 @@ const Notes: React.FC<NotesProps> = () => {
       </div>
       {modal.visible ?
         <Portal>
-          <Layover onClick={() => { dispatch(closeModal()); setSelectedNote(undefined) }} />
+          <Layover onClick={handleOnNoteClose} />
           {modal.modalId === NOTE_MODAL_ID ? <AddNote note={selectedNote} onClose={() => setSelectedNote(undefined)} /> : null}
-          {modal.modalId === CONFIRM_MODAL_ID ?
+          {modal.modalId === CONFIRM_DELETE_NOTE_MODAL_ID ?
             <ConfirmModal
               isOpen={true}
-              onClose={() => { dispatch(closeModal()); setSelectedNote(undefined); }}
-              onConfirm={() => { dispatch(removeNote(selectedNote?.id)); dispatch(closeModal()); }}
+              onClose={handleOnNoteClose}
+              onConfirm={handleOnNoteDelete}
               title="Delete Note?"
               message="This action cannot be undone. Are you sure you want to delete this note?"
               confirmText="Delete"
