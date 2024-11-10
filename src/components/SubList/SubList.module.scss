@@ -39,7 +39,7 @@
     &::before {
       content: '';
       display: block;
-      height: 60%;
+      height: calc(100% - 25px);
       width: rem(2px);
       background-color: var(--border-color);
       position: absolute;
