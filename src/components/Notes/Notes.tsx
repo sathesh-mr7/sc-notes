@@ -13,12 +13,16 @@ import AddNote from '../AddNote/AddNote';
 import styles from './Notes.module.scss';
 import Layover from '../Layover/Layover';
 import { CONFIRM_DELETE_NOTE_MODAL_ID, NOTE_MODAL_ID } from '../../constants';
+import { addToTrash } from '../../store/trashNotesSlice';
 
 interface NotesProps {
-
+  notes: Note[];
+  readonly?: boolean;
 }
-const Notes: React.FC<NotesProps> = () => {
-  const notes = useSelector((state: RootState) => state.notes);
+const Notes: React.FC<NotesProps> = ({
+  notes,
+  readonly,
+}) => {
   const modal = useSelector((state: RootState) => state.showModal);
   const dispatch = useDispatch();
   const [selectedNote, setSelectedNote] = useState<Note>();
@@ -35,6 +39,7 @@ const Notes: React.FC<NotesProps> = () => {
   const handleOnNoteDelete = () => {
     setSelectedNote(undefined);
     dispatch(removeNote(selectedNote?.id));
+    dispatch(addToTrash(selectedNote));
     dispatch(closeModal());
   }
 
@@ -46,9 +51,9 @@ const Notes: React.FC<NotesProps> = () => {
     <>
       <div className={styles.container}>
         {notes.map(note => (
-          <NoteSlot className={`${styles.note}`} key={note.id} note={note} onNoteClick={handleOnNoteClick} />
+          <NoteSlot readonly={readonly} className={`${styles.note}`} key={note.id} note={note} onNoteClick={handleOnNoteClick} />
         ))}
-        <EmptyNoteSlot onClick={handleOnEmptySlotClick} />
+        {!readonly ? <EmptyNoteSlot onClick={handleOnEmptySlotClick} /> : null}
       </div>
       {modal.visible ?
         <Portal>
