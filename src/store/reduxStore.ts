@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import notesReducer from "./notesSlice";
 import trashNotesReducer from "./trashNotesSlice";
 import modalReducer from "./modalSlice";
+import foldersReducer from "./folderSlice";
 
 export const store = configureStore({
   reducer: {
+    folders: foldersReducer,
     notes: notesReducer,
-    trash: trashNotesReducer,
     showModal: modalReducer,
+    trash: trashNotesReducer,
   },
 });
 
