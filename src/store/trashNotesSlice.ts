@@ -11,6 +11,11 @@ const trashNotesSlice = createSlice({
       state.push(action.payload);
       addNotesToTrash(state);
     },
+    deleteFromTrash: (state, action) => {
+      const index = state.findIndex((note) => note.id === action.payload.id);
+      state.splice(index, 1);
+      addNotesToTrash(state);
+    },
     clearTrash: () => {
       addNotesToTrash(initialState);
       return initialState;
@@ -18,6 +23,6 @@ const trashNotesSlice = createSlice({
   },
 });
 
-export const { addToTrash, clearTrash } = trashNotesSlice.actions;
+export const { addToTrash, deleteFromTrash, clearTrash } = trashNotesSlice.actions;
 
 export default trashNotesSlice.reducer;

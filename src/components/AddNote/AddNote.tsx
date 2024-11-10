@@ -13,8 +13,9 @@ import { closeModal } from '../../store/modalSlice';
 import Toolbar from '../Toolbar/Toolbar';
 import useTextFormatter from '../../hooks/useTextFormatter';
 import LabelColorPicker from '../LabelColorPicker/LabelColorPicker';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Input from '../Input/Input';
+import { deleteFromTrash } from '../../store/trashNotesSlice';
 
 interface AddNoteProps {
   note?: Note;
@@ -26,10 +27,15 @@ const AddNote: React.FC<AddNoteProps> = ({
   onClose,
 }) => {
   const dispatch = useDispatch();
-  const folderId = useParams<{ folderId: string }>().folderId;
-  const { formattedText, formatText } = useTextFormatter(!!note);
+  const location = useLocation();
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const params = useParams<{ folderId: string }>();
+  const folderId = note?.folder ?? params.folderId;
+  const { formattedText, formatText } = useTextFormatter(!!note);
+  const isViewFromTrash = location.pathname.includes('trash');
   const noteId = note?.id ?? crypto.randomUUID();
+
   const [title, setTitle] = useState(note?.title || '');
   const [content, setContent] = useState(note?.content || '');
   const [labelName, setLabelName] = useState(note?.tag?.text || '');
@@ -77,6 +83,25 @@ const AddNote: React.FC<AddNoteProps> = ({
   const handleOnClose = () => {
     onClose();
     dispatch(closeModal())
+  }
+
+  const handleOnRestore = () => {
+    dispatch(addNote({
+      id: crypto.randomUUID(),
+      title,
+      content: formattedText,
+      createdAt: formatDate(new Date()),
+      updatedAt: formatDate(new Date()),
+      ...(folderId ? { folder: folderId } : {}),
+      ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
+    }));
+    handleOnRemoveFromTrash();
+    handleOnClose();
+  };
+
+  const handleOnRemoveFromTrash = () => {
+    dispatch(deleteFromTrash(noteId));
+    handleOnClose();
   }
 
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -128,8 +153,18 @@ const AddNote: React.FC<AddNoteProps> = ({
           </div>
         </section>
         <footer className={styles.footer}>
-          <Button size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnClose}>Cancel</Button>
-          <Button size='sm' className={styles.button} onClick={() => handleOnSave(!!note)}>Save</Button>
+          {!isViewFromTrash ?
+            (
+              <>
+                <Button size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnClose}>Cancel</Button>
+                <Button size='sm' type='submit' variant='primary' className={styles.button} onClick={() => handleOnSave(!!note)}>Save</Button>
+              </>
+            ) : (
+              <>
+                <Button size='sm' type='reset' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
+                <Button size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnRemoveFromTrash}>Delete Forever</Button>
+              </>
+            )}
         </footer>
       </div>
     </div>
