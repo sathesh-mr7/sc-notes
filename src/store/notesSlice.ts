@@ -26,7 +26,8 @@ const notesSlice = createSlice({
     },
     filterNotes: (state, action) => {
       const query = action.payload.toLowerCase();
-      return state.filter(
+      const notes = getNotes();
+      return notes.filter(
         (note) => (note.title.toLowerCase().includes(query) ||
           note.content.toLowerCase().includes(query) ||
           note.tag?.text.toLowerCase().includes(query)),
