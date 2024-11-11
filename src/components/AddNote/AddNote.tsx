@@ -161,8 +161,8 @@ const AddNote: React.FC<AddNoteProps> = ({
               </>
             ) : (
               <>
-                <Button size='sm' type='reset' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
-                <Button size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnRemoveFromTrash}>Delete Forever</Button>
+                <Button size='sm' type='button' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
+                <Button size='sm' type='button' variant='secondary' className={styles.button} onClick={handleOnRemoveFromTrash}>Delete Forever</Button>
               </>
             )}
         </footer>
