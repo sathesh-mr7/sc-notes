@@ -32,7 +32,7 @@
     }
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: $mobileBreakpoint) {
     width: 100%;
   }
 }

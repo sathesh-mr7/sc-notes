@@ -13,7 +13,7 @@
     flex-wrap: wrap;
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: $mobileBreakpoint) {
     justify-content: end;
   }
 }

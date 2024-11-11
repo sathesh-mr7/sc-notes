@@ -1,7 +1,8 @@
 @use 'sass:math';
 
+$mobileBreakpoint: 500px;
 $baseFontSize: 16px;
 
 @function rem($pxValue) {
-    @return math.div($pxValue, $baseFontSize) * 1rem; 
+    @return math.div($pxValue, $baseFontSize) * 1rem;
 }

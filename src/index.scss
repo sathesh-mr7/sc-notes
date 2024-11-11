@@ -49,7 +49,7 @@ code {
     monospace;
 }
 
-@media (max-width: 390px) {
+@media (max-width: $mobileBreakpoint) {
   .divider {
     margin: rem(10px) 0;
   }

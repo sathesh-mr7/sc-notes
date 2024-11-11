@@ -10,7 +10,7 @@
     height: rem(42px);
   }
 
-  @media (max-width: 390px) {
+  @media (max-width: $mobileBreakpoint) {
     margin-bottom: rem(5px);
     justify-content: center;
 
