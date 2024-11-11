@@ -18,4 +18,12 @@
     transform: translateY(-50%);
     color: var(--sec-text-color);
   }
+
+  @media (max-width: $mobileBreakpoint) {
+    .searchInput {
+      width: 48px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+  }
 }

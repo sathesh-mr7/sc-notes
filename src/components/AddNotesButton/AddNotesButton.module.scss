@@ -10,4 +10,16 @@
     height: rem(18px);
     fill: var(--white-color);
   }
+
+  @media (max-width: $mobileBreakpoint) {
+    border-radius: 30px;
+    padding: rem(8px);
+    width: 35px;
+    justify-content: center;
+    gap: 5px;
+
+    .text {
+      display: none;
+    }
+  }
 }

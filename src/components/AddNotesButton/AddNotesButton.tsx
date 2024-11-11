@@ -12,7 +12,7 @@ const AddNotesButton: React.FC<AddNotesButtonProps> = ({
   return (
     <Button className={styles.addNotesButton} onClick={onClick}>
       <PlusIcon className={styles.plusIcon} />
-      <span>Add Notes</span>
+      <span className={styles.text}>Add Notes</span>
     </Button>
   )
 }

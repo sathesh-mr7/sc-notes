@@ -14,11 +14,8 @@
   }
 
   @media (max-width: $mobileBreakpoint) {
-    justify-content: end;
     .sectionLeftSide {
-      &.hide {
-        display: none;
-      }
+      gap: rem(10px);
     }
   }
 }

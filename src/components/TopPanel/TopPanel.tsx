@@ -25,7 +25,7 @@ const TopPanel: React.FC = () => {
   }
   return (
     <section className={styles.container}>
-      <div className={`${styles.sectionLeftSide} ${styles.hide}`}>
+      <div className={styles.sectionLeftSide}>
         <AddNotesButton onClick={() => dispatch(showModal(NOTE_MODAL_ID))} />
         <SearchNotes onChange={handleOnSearch} />
       </div>
