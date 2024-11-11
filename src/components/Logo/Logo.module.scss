@@ -6,6 +6,11 @@
   align-items: center;
   padding: rem(5px);
 
+  link {
+    text-decoration: none;
+    color: var(--sec-text-color);
+  }
+
   .logo {
     height: rem(42px);
   }
