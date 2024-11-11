@@ -1,21 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
+
+import { RootState } from '../../store/reduxStore';
+import { addNote, updateNote } from '../../store/notesSlice';
+import { deleteFromTrash } from '../../store/trashNotesSlice';
+import { closeModal } from '../../store/modalSlice';
 
 import { formatDate, getTextFormatOptionFormHtml, removeHtmlTags } from '../../utils/helper';
 
 import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
+import useTextFormatter from '../../hooks/useTextFormatter';
 
 import Button from '../../ui/Button/Button';
-import styles from './AddNote.module.scss';
-import PreviewNote from '../PreviewNote/PreviewNote';
-import { addNote, updateNote } from '../../store/notesSlice';
-import { closeModal } from '../../store/modalSlice';
-import Toolbar from '../Toolbar/Toolbar';
-import useTextFormatter from '../../hooks/useTextFormatter';
-import LabelColorPicker from '../LabelColorPicker/LabelColorPicker';
-import { useLocation, useParams } from 'react-router-dom';
 import Input from '../../ui/Input/Input';
-import { deleteFromTrash } from '../../store/trashNotesSlice';
+import CheckboxList from '../OptionList/OptionList';
+import LabelColorPicker from '../LabelColorPicker/LabelColorPicker';
+import PreviewNote from '../PreviewNote/PreviewNote';
+import Toolbar from '../Toolbar/Toolbar';
+
+import styles from './AddNote.module.scss';
 
 interface AddNoteProps {
   note?: Note;
@@ -28,14 +32,15 @@ const AddNote: React.FC<AddNoteProps> = ({
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const folders = useSelector((state: RootState) => state.folders);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const params = useParams<{ folderId: string }>();
-  const folderId = note?.folder ?? params.folderId;
   const { formattedText, formatText } = useTextFormatter(!!note);
   const isViewFromTrash = location.pathname.includes('trash');
   const noteId = note?.id ?? crypto.randomUUID();
 
+  const [folderId, setFolderId] = useState(note?.folder ?? params.folderId);
   const [title, setTitle] = useState(note?.title || '');
   const [content, setContent] = useState(note?.content || '');
   const [labelName, setLabelName] = useState(note?.tag?.text || '');
@@ -58,6 +63,7 @@ const AddNote: React.FC<AddNoteProps> = ({
         content: formattedText,
         createdAt: note?.createdAt,
         updatedAt: formatDate(new Date()),
+        ...(folderId ? { folder: folderId } : {}),
         ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
       }));
     } else {
@@ -139,6 +145,12 @@ const AddNote: React.FC<AddNoteProps> = ({
                 <Input className={styles.input} id="label" type='text' value={labelName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
                 <LabelColorPicker onColorPick={setLabelColor} selectedColor={labelColor} />
               </div>
+              {folders.length > 0 ? (
+                <div className={styles.field}>
+                  <label className={styles.label}>Add/Move to folder <small>(Optional)</small></label>
+                  <CheckboxList defaultSelectedOption={folderId} listItems={folders.map(folder => ({ id: folder.id, name: folder.name }))} onSelect={(id) => setFolderId(id)} />
+                </div>
+              ) : null}
             </div>
           </div>
           <div className={styles.sectionRight}>

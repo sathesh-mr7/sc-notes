@@ -1,0 +1,11 @@
+@import '../../shared-styles/mixin.scss';
+
+.container {
+  .dropdownList {
+    padding: rem(10px);
+    background-color: var(--sec-bg);
+    border-radius: rem(5px);
+    border: 1px solid var(--border-color);
+    width: 100%;
+  }
+}
