@@ -11,12 +11,10 @@ import SearchNotes from '../SearchNotes/SearchNotes';
 import ToggleSwitch from '../../ui/ToggleSwitch/ToggleSwitch';
 
 import styles from './TopPanel.module.scss';
-import { isMobileDevice } from '../../utils/helper';
 
 const TopPanel: React.FC = () => {
   const dispatch = useDispatch();
   const themeContext = useContext(ThemeContext);
-  const isMobile = isMobileDevice();
 
   const handleOnSearch = (text: string) => {
     if (text === '') {
@@ -27,10 +25,10 @@ const TopPanel: React.FC = () => {
   }
   return (
     <section className={styles.container}>
-      {!isMobile ? <div className={styles.sectionLeftSide}>
+      <div className={`${styles.sectionLeftSide} ${styles.hide}`}>
         <AddNotesButton onClick={() => dispatch(showModal(NOTE_MODAL_ID))} />
         <SearchNotes onChange={handleOnSearch} />
-      </div> : null}
+      </div>
       {!!themeContext ? <ToggleSwitch labels={['dark', 'light']} id="mode" onToggle={themeContext.toggleDarkMode} isChecked={themeContext.isDarkMode} /> : null}
     </section>
   )

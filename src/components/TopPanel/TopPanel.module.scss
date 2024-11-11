@@ -15,5 +15,10 @@
 
   @media (max-width: $mobileBreakpoint) {
     justify-content: end;
+    .sectionLeftSide {
+      &.hide {
+        display: none;
+      }
+    }
   }
 }
