@@ -3,7 +3,6 @@ interface Note {
   createdAt: string;
   updatedAt: string;
   id: string;
-  parent?: string | null;
   tag?: {
     text: string;
     color: TagColor | undefined;

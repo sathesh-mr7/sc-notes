@@ -10,20 +10,25 @@ import SubList from "../SubList/SubList";
 import Portal from "../Portal/Portal";
 import Layover from "../../ui/Layover/Layover";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import { removeFolderNotes } from "../../store/notesSlice";
 
 const Folders: React.FC = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state: RootState) => state.showModal);
   const folders = useSelector((state: RootState) => state.folders);
   const [selectedFolderName, setSelectedFolderName] = useState('');
+  const [selectedFolderId, setSelectedFolderId] = useState('');
 
   const handleRemoveFolder = (folderName: string) => {
     setSelectedFolderName(folderName);
+    const folder = folders.find(folder => folder.name === folderName);
+    setSelectedFolderId(folder?.id ?? '');
     dispatch(showModal(CONFIRM_DELETE_FOLDER_MODAL_ID));
   }
 
   const handleOnConfirmRemoveFolder = () => {
     dispatch(removeFolder(selectedFolderName));
+    dispatch(removeFolderNotes(selectedFolderId));
     dispatch(closeModal());
     setSelectedFolderName('');
   }

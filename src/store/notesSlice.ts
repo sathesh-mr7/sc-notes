@@ -16,6 +16,15 @@ const notesSlice = createSlice({
       setNotes(filterNotes);
       return filterNotes;
     },
+    removeFolderNotes: (state, action) => {
+      if (!action.payload) {
+        return state;
+      }
+      const notesWithFolder = state.filter((note) => note.folder);
+      const filterNotes = notesWithFolder.filter((note) => note.folder !== action.payload);
+      setNotes(filterNotes);
+      return filterNotes;
+    },
     updateNote: (state, action) => {
       const { id, ...note } = action.payload;
       const existingNote = state.find((note) => note.id === id);
@@ -39,6 +48,6 @@ const notesSlice = createSlice({
   },
 });
 
-export const { addNote, removeNote, updateNote, filterNotes, resetFilter } = notesSlice.actions;
+export const { addNote, removeNote, removeFolderNotes, updateNote, filterNotes, resetFilter } = notesSlice.actions;
 
 export default notesSlice.reducer;
