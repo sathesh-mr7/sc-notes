@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
+import { isMobileDevice } from './utils/helper';
 
 import AllNotes from './components/AllNotes/AllNotes';
 import FolderNotes from './components/FolderNotes/FolderNotes';
@@ -17,6 +18,7 @@ import styles from './App.module.scss';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('isDarkMode') === 'true');
+  const isMobile = isMobileDevice();
 
   const toggleDarkMode = () => {
     localStorage.setItem('isDarkMode', JSON.stringify(!isDarkMode));
@@ -32,8 +34,12 @@ function App() {
           <SidePanel>
             <Logo />
             <div className="divider" />
-            <Navigation />
-            <div className="divider" />
+            {!isMobile ?
+              <>
+                <Navigation />
+                <div className="divider" />
+              </>
+              : null}
           </SidePanel>
 
           {/* Main Panel with Notes */}

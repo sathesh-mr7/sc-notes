@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: $baseFontSize;
+  background-color: #080814;
 }
 
 :root {
@@ -46,4 +47,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (max-width: 390px) {
+  .divider {
+    margin: rem(10px) 0;
+  }
 }

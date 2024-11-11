@@ -130,4 +130,25 @@
       margin: 0;
     }
   }
+
+  @media (max-width: 390px) {
+    overflow: auto;
+    top: 0;
+    height: fit-content;
+    padding: rem(10px);
+    width: calc(100% - rem(20px));
+
+    .wrapper {
+      padding: rem(16px);
+      height: calc(100vh - 50px);
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      width: 100%;
+    }
+
+    .section {
+      flex-direction: column;
+    }
+  }
 }

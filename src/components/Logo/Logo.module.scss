@@ -9,4 +9,13 @@
   .logo {
     height: rem(42px);
   }
+
+  @media (max-width: 390px) {
+    margin-bottom: rem(5px);
+    justify-content: center;
+
+    .logo {
+      height: rem(30px);
+    }
+  }
 }

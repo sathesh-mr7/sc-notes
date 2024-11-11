@@ -12,4 +12,8 @@
     gap: rem(20px);
     flex-wrap: wrap;
   }
+
+  @media (max-width: 390px) {
+    justify-content: end;
+  }
 }
