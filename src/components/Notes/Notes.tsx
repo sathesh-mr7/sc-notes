@@ -80,7 +80,7 @@ const Notes: React.FC<NotesProps> = ({
       {modal.visible ?
         <Portal>
           <Layover onClick={handleOnNoteClose} />
-          {modal.modalId === NOTE_MODAL_ID ? <AddNote note={selectedNote} onClose={() => setSelectedNote(undefined)} /> : null}
+          {modal.modalId === NOTE_MODAL_ID ? <AddNote note={selectedNote} onClose={() => setSelectedNote(undefined)} readonly={readonly} /> : null}
           {modal.modalId === CONFIRM_DELETE_NOTE_MODAL_ID ?
             <ConfirmModal
               isOpen={true}

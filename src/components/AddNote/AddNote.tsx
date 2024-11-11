@@ -24,11 +24,13 @@ import styles from './AddNote.module.scss';
 interface AddNoteProps {
   note?: Note;
   onClose: () => void;
+  readonly?: boolean;
 }
 
 const AddNote: React.FC<AddNoteProps> = ({
   note,
   onClose,
+  readonly = false,
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -118,42 +120,44 @@ const AddNote: React.FC<AddNoteProps> = ({
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <header className={styles.header}>
-          <h3 className={styles.headerTitle}>{!!note ? 'Edit This Note' : 'Add New Note'}</h3>
+          {!readonly ? <h3 className={styles.headerTitle}>{!!note ? 'Edit This Note' : 'Add New Note'}</h3> : <h3 className={styles.headerTitle}>Deleted Note</h3>}
           <span className={styles.closeButton} onClick={handleOnClose}>
             <CloseIcon className={styles.closeIcon} />
           </span>
         </header>
         <section className={styles.section}>
-          <div className={styles.sectionLeft}>
-            <div className={styles.content}>
-              <div className={styles.field}>
-                <label htmlFor="title" className={styles.label}>Note Title <small>(Optional)</small></label>
-                <Input className={styles.input} id="title" type='text' value={title} placeholder="Enter title" onChange={(event) => setTitle(event.target.value)} />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="content" className={styles.label}>Note</label>
-                <textarea
-                  ref={textAreaRef}
-                  className={`${styles.textarea} ${hasError ? styles.error : ''}`} id="content" value={removeHtmlTags(content)}
-                  placeholder="Enter Note"
-                  onChange={handleTextAreaChange}
-                />
-                <Toolbar defaultOption={textFormatOption} onOptionsChange={setTextFormatOption} />
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="label" className={styles.label}>Label <small>(Optional)</small></label>
-                <Input className={styles.input} id="label" type='text' value={labelName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
-                <LabelColorPicker onColorPick={setLabelColor} selectedColor={labelColor} />
-              </div>
-              {folders.length > 0 ? (
+          {!readonly ? (
+            <div className={styles.sectionLeft}>
+              <div className={styles.content}>
                 <div className={styles.field}>
-                  <label className={styles.label}>Add/Move to folder <small>(Optional)</small></label>
-                  <CheckboxList defaultSelectedOption={folderId} listItems={folders.map(folder => ({ id: folder.id, name: folder.name }))} onSelect={(id) => setFolderId(id)} />
+                  <label htmlFor="title" className={styles.label}>Note Title <small>(Optional)</small></label>
+                  <Input className={styles.input} id="title" type='text' value={title} placeholder="Enter title" onChange={(event) => setTitle(event.target.value)} />
                 </div>
-              ) : null}
+                <div className={styles.field}>
+                  <label htmlFor="content" className={styles.label}>Note</label>
+                  <textarea
+                    ref={textAreaRef}
+                    className={`${styles.textarea} ${hasError ? styles.error : ''}`} id="content" value={removeHtmlTags(content)}
+                    placeholder="Enter Note"
+                    onChange={handleTextAreaChange}
+                  />
+                  <Toolbar defaultOption={textFormatOption} onOptionsChange={setTextFormatOption} />
+                </div>
+                <div className={styles.field}>
+                  <label htmlFor="label" className={styles.label}>Label <small>(Optional)</small></label>
+                  <Input className={styles.input} id="label" type='text' value={labelName} placeholder="Enter Label Name" onChange={(event) => setLabelName(event.target.value)} />
+                  <LabelColorPicker onColorPick={setLabelColor} selectedColor={labelColor} />
+                </div>
+                {folders.length > 0 ? (
+                  <div className={styles.field}>
+                    <label className={styles.label}>Add/Move to folder <small>(Optional)</small></label>
+                    <CheckboxList defaultSelectedOption={folderId} listItems={folders.map(folder => ({ id: folder.id, name: folder.name }))} onSelect={(id) => setFolderId(id)} />
+                  </div>
+                ) : null}
+              </div>
             </div>
-          </div>
-          <div className={styles.sectionRight}>
+          ) : null}
+          <div className={`${styles.sectionRight} ${readonly ? styles.fullView : ''}`}>
             <PreviewNote note={{
               id: noteId,
               title,

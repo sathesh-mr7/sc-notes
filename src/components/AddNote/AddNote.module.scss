@@ -54,6 +54,9 @@
     &Right {
       flex-basis: 50%;
       display: flex;
+      &.fullView {
+        flex-basis: 1000%;
+      }
     }
 
     .previewTitle {
