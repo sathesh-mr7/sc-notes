@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './store/themeContext';
 
 import AllNotes from './components/AllNotes/AllNotes';
@@ -28,43 +28,41 @@ function App() {
       <div className={styles.container} data-theme={isDarkMode ? 'dark' : 'light'}>
         <PortalRoot />
         <Layout>
-          <BrowserRouter basename='/sc-notes'>
-            {/* Side Panel with Navigation Menu */}
-            <SidePanel>
-              <Logo />
-              <div className="divider" />
-              <Navigation />
-              <div className="divider" />
-            </SidePanel>
+          {/* Side Panel with Navigation Menu */}
+          <SidePanel>
+            <Logo />
+            <div className="divider" />
+            <Navigation />
+            <div className="divider" />
+          </SidePanel>
 
-            {/* Main Panel with Notes */}
-            <MainPanel>
-              {/* Routes */}
-              <Routes>
-                {/* Home */}
-                <Route path="/" element={
-                  <section className={styles.section}>
-                    <TopPanel />
-                    <AllNotes />
-                  </section>
-                } />
-                {/* Folders */}
-                <Route path="/folders/:folderId" element={
-                  <section className={styles.section}>
-                    <TopPanel />
-                    <FolderNotes />
-                  </section>
-                } />
-                {/* Trash */}
-                <Route path="/trash" element={
-                  <section className={styles.section}>
-                    <TrashedNotes />
-                  </section>
-                } />
-              </Routes>
+          {/* Main Panel with Notes */}
+          <MainPanel>
+            {/* Routes */}
+            <Routes>
+              {/* Home */}
+              <Route path="/" element={
+                <section className={styles.section}>
+                  <TopPanel />
+                  <AllNotes />
+                </section>
+              } />
+              {/* Folders */}
+              <Route path="/folders/:folderId" element={
+                <section className={styles.section}>
+                  <TopPanel />
+                  <FolderNotes />
+                </section>
+              } />
+              {/* Trash */}
+              <Route path="/trash" element={
+                <section className={styles.section}>
+                  <TrashedNotes />
+                </section>
+              } />
+            </Routes>
 
-            </MainPanel>
-          </BrowserRouter>
+          </MainPanel>
         </Layout>
 
         {/* Footer */}
