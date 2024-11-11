@@ -1,6 +1,6 @@
 import styles from './ConfirmModal.module.scss';
 import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
-import Button from '../Button/Button';
+import Button from '../../ui/Button/Button';
 
 interface ConfirmModalProps {
   confirmText: string;

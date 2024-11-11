@@ -2,14 +2,15 @@ import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { ThemeContext } from '../../store/themeContext';
 import { showModal } from '../../store/modalSlice';
+import { filterNotes, resetFilter } from '../../store/notesSlice';
+
 import { NOTE_MODAL_ID } from '../../constants';
 
 import AddNotesButton from '../AddNotesButton/AddNotesButton';
 import SearchNotes from '../SearchNotes/SearchNotes';
-import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import ToggleSwitch from '../../ui/ToggleSwitch/ToggleSwitch';
 
 import styles from './TopPanel.module.scss';
-import { filterNotes, resetFilter } from '../../store/notesSlice';
 
 const TopPanel: React.FC = () => {
   const dispatch = useDispatch();

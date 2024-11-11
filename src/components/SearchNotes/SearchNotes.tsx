@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
-import Input from "../Input/Input";
+import Input from "../../ui/Input/Input";
 
 import styles from "./SearchNotes.module.scss";
 import { debounce } from "../../utils/helper";

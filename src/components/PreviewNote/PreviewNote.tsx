@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '../Tag/Tag';
+import Tag from '../../ui/Tag/Tag';
 import styles from './PreviewNote.module.scss';
 
 interface PreviewNoteProps {

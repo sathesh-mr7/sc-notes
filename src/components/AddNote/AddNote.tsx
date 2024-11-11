@@ -5,7 +5,7 @@ import { formatDate, getTextFormatOptionFormHtml, removeHtmlTags } from '../../u
 
 import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
 
-import Button from '../Button/Button';
+import Button from '../../ui/Button/Button';
 import styles from './AddNote.module.scss';
 import PreviewNote from '../PreviewNote/PreviewNote';
 import { addNote, updateNote } from '../../store/notesSlice';
@@ -14,7 +14,7 @@ import Toolbar from '../Toolbar/Toolbar';
 import useTextFormatter from '../../hooks/useTextFormatter';
 import LabelColorPicker from '../LabelColorPicker/LabelColorPicker';
 import { useLocation, useParams } from 'react-router-dom';
-import Input from '../Input/Input';
+import Input from '../../ui/Input/Input';
 import { deleteFromTrash } from '../../store/trashNotesSlice';
 
 interface AddNoteProps {
@@ -121,7 +121,7 @@ const AddNote: React.FC<AddNoteProps> = ({
           <div className={styles.sectionLeft}>
             <div className={styles.content}>
               <div className={styles.field}>
-                <label htmlFor="title" className={styles.label}>Note Title</label>
+                <label htmlFor="title" className={styles.label}>Note Title <small>(Optional)</small></label>
                 <Input className={styles.input} id="title" type='text' value={title} placeholder="Enter title" onChange={(event) => setTitle(event.target.value)} />
               </div>
               <div className={styles.field}>

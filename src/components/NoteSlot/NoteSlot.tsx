@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '../Tag/Tag';
+import Tag from '../../ui/Tag/Tag';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import ActionMenu from '../ActionMenu/ActionMenu';
 

@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "../../ui/Button/Button";
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus-sign.svg";
 import styles from "./AddNotesButton.module.scss";
 import React from "react";

@@ -8,7 +8,7 @@ import { CONFIRM_DELETE_FOLDER_MODAL_ID } from "../../constants";
 
 import SubList from "../SubList/SubList";
 import Portal from "../Portal/Portal";
-import Layover from "../Layover/Layover";
+import Layover from "../../ui/Layover/Layover";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
 const Folders: React.FC = () => {

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reduxStore";
 import { clearTrash } from "../../store/trashNotesSlice";
 import Notes from "../Notes/Notes";
-import Button from "../Button/Button";
+import Button from "../../ui/Button/Button";
 
 import styles from './TrashedNotes.module.scss';
 

@@ -5,8 +5,8 @@ import { addFolder } from "../../store/folderSlice";
 
 import { formatDate } from "../../utils/helper";
 
-import Button from "../Button/Button";
-import Input from "../Input/Input";
+import Button from "../../ui/Button/Button";
+import Input from "../../ui/Input/Input";
 
 import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 

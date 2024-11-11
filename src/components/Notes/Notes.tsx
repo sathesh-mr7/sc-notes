@@ -11,7 +11,7 @@ import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import AddNote from '../AddNote/AddNote';
 
 import styles from './Notes.module.scss';
-import Layover from '../Layover/Layover';
+import Layover from '../../ui/Layover/Layover';
 import { CONFIRM_DELETE_NOTE_MODAL_ID, NOTE_MODAL_ID } from '../../constants';
 import { addToTrash } from '../../store/trashNotesSlice';
 
