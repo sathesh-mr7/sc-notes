@@ -28,7 +28,7 @@ function App() {
       <div className={styles.container} data-theme={isDarkMode ? 'dark' : 'light'}>
         <PortalRoot />
         <Layout>
-          <BrowserRouter>
+          <BrowserRouter basename='/sc-notes'>
             {/* Side Panel with Navigation Menu */}
             <SidePanel>
               <Logo />
