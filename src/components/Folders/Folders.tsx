@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reduxStore";
 import { closeModal, showModal } from "../../store/modalSlice";
@@ -19,6 +20,7 @@ const Folders: React.FC<FoldersProps> = ({
   onFolderClick = () => { },
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const modal = useSelector((state: RootState) => state.showModal);
   const folders = useSelector((state: RootState) => state.folders);
   const [selectedFolderName, setSelectedFolderName] = useState('');
@@ -36,6 +38,7 @@ const Folders: React.FC<FoldersProps> = ({
     dispatch(removeFolderNotes(selectedFolderId));
     dispatch(closeModal());
     setSelectedFolderName('');
+    navigate('/');
   }
 
   const handleOnClose = () => {

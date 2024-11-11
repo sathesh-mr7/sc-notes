@@ -20,10 +20,9 @@ const notesSlice = createSlice({
       if (!action.payload) {
         return state;
       }
-      const notesWithFolder = state.filter((note) => note.folder);
-      const filterNotes = notesWithFolder.filter((note) => note.folder !== action.payload);
-      setNotes(filterNotes);
-      return filterNotes;
+      state = state.filter((note) => !(note.folder && note.folder === action.payload));
+      setNotes(state);
+      return state;
     },
     updateNote: (state, action) => {
       const { id, ...note } = action.payload;
