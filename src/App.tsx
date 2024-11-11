@@ -7,7 +7,9 @@ import AllNotes from './components/AllNotes/AllNotes';
 import FolderNotes from './components/FolderNotes/FolderNotes';
 import Logo from './components/Logo/Logo';
 import Layout from './components/AppLayout/Layout';
+import Layover from './ui/Layover/Layover';
 import MainPanel from './components/MainPanel/MainPanel';
+import MobileNavigation from './components/MobileNavigation/MobileNavigation';
 import Navigation from './components/Navigation/Navigation';
 import PortalRoot from './components/PortalRoot/PortalRoot';
 import SidePanel from './components/SidePanel/SidePanel';
@@ -19,6 +21,7 @@ import styles from './App.module.scss';
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('isDarkMode') === 'true');
   const isMobile = isMobileDevice();
+  const [showMobileNavigation, setShowMobileNavigation] = useState(false);
 
   const toggleDarkMode = () => {
     localStorage.setItem('isDarkMode', JSON.stringify(!isDarkMode));
@@ -34,12 +37,9 @@ function App() {
           <SidePanel>
             <Logo />
             <div className="divider" />
-            {!isMobile ?
-              <>
-                <Navigation />
-                <div className="divider" />
-              </>
-              : null}
+            {isMobile && showMobileNavigation ? <Layover onClick={() => setShowMobileNavigation(!showMobileNavigation)} /> : null}
+            <Navigation isMobile={isMobile} show={showMobileNavigation} onClick={isMobile ? () => setShowMobileNavigation(!showMobileNavigation) : () => { }} />
+            {!isMobile ? <div className="divider" /> : null}
           </SidePanel>
 
           {/* Main Panel with Notes */}
@@ -69,7 +69,7 @@ function App() {
                 </section>
               } />
             </Routes>
-
+            <MobileNavigation toggleSideBar={() => setShowMobileNavigation(!showMobileNavigation)} />
           </MainPanel>
         </Layout>
 

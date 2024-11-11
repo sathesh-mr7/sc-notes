@@ -12,7 +12,12 @@ import Layover from "../../ui/Layover/Layover";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import { removeFolderNotes } from "../../store/notesSlice";
 
-const Folders: React.FC = () => {
+interface FoldersProps { 
+  onFolderClick?: () => void;
+}
+const Folders: React.FC<FoldersProps> = ({
+  onFolderClick = () => { },
+}) => {
   const dispatch = useDispatch();
   const modal = useSelector((state: RootState) => state.showModal);
   const folders = useSelector((state: RootState) => state.folders);
@@ -40,7 +45,7 @@ const Folders: React.FC = () => {
 
   return (
     <>
-      <SubList basePath="/folders" onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => ({ id: folder.id, text: folder.name }))} emptyListMessage='No folders found' />
+      <SubList onListItemClick={onFolderClick} basePath="/folders" onRemoveItem={handleRemoveFolder} listItems={folders.map(folder => ({ id: folder.id, text: folder.name }))} emptyListMessage='No folders found' />
       {modal.visible ?
         <Portal>
           <Layover onClick={handleOnClose} />

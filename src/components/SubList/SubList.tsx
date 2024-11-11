@@ -7,6 +7,7 @@ interface SubListProps {
   listItems: { id: string, text: string }[];
   emptyListMessage: string;
   onRemoveItem?: (item: string) => void;
+  onListItemClick?: () => void;
 }
 
 const SubList: React.FC<SubListProps> = ({
@@ -14,6 +15,7 @@ const SubList: React.FC<SubListProps> = ({
   listItems,
   emptyListMessage,
   onRemoveItem,
+  onListItemClick = () => { }
 }) => {
   const { pathname } = useLocation();
 
@@ -23,7 +25,7 @@ const SubList: React.FC<SubListProps> = ({
         <ul className={styles.subList}>
           {listItems.map(({ id, text }) => (
             <li key={id}>
-              <Link className={`${styles.link} ${pathname.indexOf(id) >= 0 ? styles.selected : ''}`} to={`${basePath}/${id}`}>
+              <Link onClick={onListItemClick} className={`${styles.link} ${pathname.indexOf(id) >= 0 ? styles.selected : ''}`} to={`${basePath}/${id}`}>
                 <span className={styles.text}>{text}</span>
                 {!!onRemoveItem ? (<span className={styles.removeList} onClick={() => onRemoveItem(text)}>
                   <TrashIcon className={styles.trashIcon} />
