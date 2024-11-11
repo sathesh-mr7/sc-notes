@@ -65,7 +65,7 @@ const Notes: React.FC<NotesProps> = ({
               onClose={handleOnNoteClose}
               onConfirm={handleOnNoteDelete}
               title="Delete Note?"
-              message="This action cannot be undone. Are you sure you want to delete this note?"
+              message="Are you sure you want to delete this note? You can still recover it from the trash."
               confirmText="Delete"
             /> : null}
         </Portal>
