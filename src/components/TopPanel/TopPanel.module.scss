@@ -4,11 +4,12 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: rem(10px);
+  gap: rem(20px);
 
   .sectionLeftSide {
     display: flex;
     align-items: center;
     gap: rem(20px);
+    flex-wrap: wrap;
   }
 }

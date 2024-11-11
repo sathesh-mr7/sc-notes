@@ -44,6 +44,7 @@ function App() {
               <Route path="/" element={
                 <section className={styles.section}>
                   <TopPanel />
+                  <div className='divider' />
                   <AllNotes />
                 </section>
               } />
@@ -51,6 +52,7 @@ function App() {
               <Route path="/folders/:folderId" element={
                 <section className={styles.section}>
                   <TopPanel />
+                  <div className='divider' />
                   <FolderNotes />
                 </section>
               } />
