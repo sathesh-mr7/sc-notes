@@ -26,6 +26,7 @@ const Notes: React.FC<NotesProps> = ({
   const modal = useSelector((state: RootState) => state.showModal);
   const dispatch = useDispatch();
   const [selectedNote, setSelectedNote] = useState<Note>();
+
   const handleOnNoteClick = (note: Note) => {
     setSelectedNote(note);
     dispatch(showModal(NOTE_MODAL_ID));
@@ -37,21 +38,42 @@ const Notes: React.FC<NotesProps> = ({
   }
 
   const handleOnNoteDelete = () => {
-    setSelectedNote(undefined);
     dispatch(removeNote(selectedNote?.id));
     dispatch(addToTrash(selectedNote));
     dispatch(closeModal());
+    setSelectedNote(undefined);
   }
 
   const handleOnNoteClose = () => {
     setSelectedNote(undefined);
     dispatch(closeModal());
   }
+
+  const handleOnActionMenuClick = (note: Note, action: string) => {
+    switch (action) {
+      case 'Edit':
+        handleOnNoteClick(note as Note);
+        break;
+      case 'Delete':
+        setSelectedNote(note);
+        dispatch(showModal(CONFIRM_DELETE_NOTE_MODAL_ID));
+        break;
+      default:
+        break;
+    }
+  }
   return (
     <>
       <div className={styles.container}>
         {notes.map(note => (
-          <NoteSlot readonly={readonly} className={`${styles.note}`} key={note.id} note={note} onNoteClick={handleOnNoteClick} />
+          <NoteSlot
+            actions={['Edit', 'Delete']}
+            readonly={readonly}
+            className={`${styles.note}`}
+            key={note.id}
+            note={note}
+            onActionClick={handleOnActionMenuClick}
+            onNoteClick={handleOnNoteClick} />
         ))}
         {!readonly ? <EmptyNoteSlot onClick={handleOnEmptySlotClick} /> : null}
       </div>

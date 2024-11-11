@@ -13,19 +13,22 @@ interface NoteSlotProps {
   note: Note;
   onNoteClick: (note: Note) => void;
   readonly?: boolean;
+  actions: Array<string>;
+  onActionClick: (note: Note, action: string) => void;
 }
 
-const NoteSlot: React.FC<NoteSlotProps> = ({ note, onNoteClick, className, readonly }) => {
+const NoteSlot: React.FC<NoteSlotProps> = ({ note, onNoteClick, className, readonly, actions, onActionClick }) => {
   const [showActionMenu, setShowActionMenu] = React.useState(false);
-  const handleAction = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, action: string) => {
-    event.stopPropagation();
-    console.log(action);
-  }
   const handleOnActionMenuClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     event.stopPropagation();
-    console.log('action menu clicked');
     setShowActionMenu(!showActionMenu);
   }
+
+  const handleAction = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, action: string) => {
+    event.stopPropagation();
+    onActionClick(note, action);
+  }
+
   return (
     <div className={`${styles.container} ${className ?? ''}`} onClick={() => onNoteClick(note)}>
       <header className={styles.header}>
@@ -36,7 +39,7 @@ const NoteSlot: React.FC<NoteSlotProps> = ({ note, onNoteClick, className, reado
         {!readonly ? (
           <div className={styles.actionMenu}>
             <span className={styles.icon} onClick={handleOnActionMenuClick}><EllipsisIcon className={styles.ellipsisIcon} /></span>
-            <ActionMenu show={showActionMenu} actions={['Edit', 'Delete']} onClick={handleAction} className={styles.actionMenuList} />
+            <ActionMenu show={showActionMenu} actions={actions} onClick={handleAction} className={styles.actionMenuList} />
           </div>
         ) : null}
 
