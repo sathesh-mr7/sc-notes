@@ -32,7 +32,6 @@ const AddNote: React.FC<AddNoteProps> = ({
   onClose,
   readonly = false,
 }) => {
-  console.log('AddNote', note);
   const dispatch = useDispatch();
   const location = useLocation();
   const folders = useSelector((state: RootState) => state.folders);
@@ -95,7 +94,6 @@ const AddNote: React.FC<AddNoteProps> = ({
   }
 
   const handleOnRestore = () => {
-    console.log('Restore Note', note);
     dispatch(addNote(note));
     handleOnRemoveFromTrash(note?.id);
     handleOnClose();
