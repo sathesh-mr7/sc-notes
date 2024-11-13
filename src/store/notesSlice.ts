@@ -8,13 +8,13 @@ const notesSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, action) => {
-      console.log('addNote', action.payload);
+      console.log("addNote", action.payload);
       state.push(action.payload);
       setNotes(state);
       return state;
     },
     removeNote: (state, action) => {
-      console.log('removeNote', action.payload);
+      console.log("removeNote", action.payload);
       const filterNotes = state.filter((note) => note.id !== action.payload);
       setNotes(filterNotes);
       return filterNotes;
@@ -23,20 +23,27 @@ const notesSlice = createSlice({
       if (!action.payload) {
         return state;
       }
-      state = state.filter((note) => !(note.folder && note.folder === action.payload));
+      state = state.filter((note) =>
+        !(note.folder && note.folder === action.payload)
+      );
       setNotes(state);
       return state;
     },
     updateNote: (state, action) => {
-      const { id, ...note } = action.payload;
-      const existingNote = state.find((note) => note.id === id);
-      if (existingNote) {
-        Object.assign(existingNote, note);
+      if (!action.payload.id) {
+        return state;
+      }
+      const index = state.findIndex((note) => note.id === action.payload.id);
+      if (index !== -1) {
+        state[index] = action.payload;
       }
       setNotes(state);
       return state;
     },
     filterNotes: (state, action) => {
+      if (!action.payload) {
+        return state;
+      }
       const query = action.payload.toLowerCase();
       const notes = getNotes();
       const filterNotes = notes.filter(
@@ -45,6 +52,7 @@ const notesSlice = createSlice({
           note.tag?.text.toLowerCase().includes(query)),
       );
       state = filterNotes;
+      return state;
     },
     resetFilter: () => {
       return getNotes();
@@ -52,6 +60,13 @@ const notesSlice = createSlice({
   },
 });
 
-export const { addNote, removeNote, removeFolderNotes, updateNote, filterNotes, resetFilter } = notesSlice.actions;
+export const {
+  addNote,
+  removeNote,
+  removeFolderNotes,
+  updateNote,
+  filterNotes,
+  resetFilter,
+} = notesSlice.actions;
 
 export default notesSlice.reducer;
