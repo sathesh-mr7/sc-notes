@@ -34,6 +34,7 @@ const AddNote: React.FC<AddNoteProps> = ({
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  console.log(location, 'location');
   const folders = useSelector((state: RootState) => state.folders);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -165,13 +166,13 @@ const AddNote: React.FC<AddNoteProps> = ({
           {!isViewFromTrash ?
             (
               <>
-                <Button size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnClose}>Cancel</Button>
-                <Button size='sm' type='submit' variant='primary' className={styles.button} onClick={() => handleOnSave(!!note)}>Save</Button>
+                <Button data-testid='cancel-button' size='sm' type='reset' variant='secondary' className={styles.button} onClick={handleOnClose}>Cancel</Button>
+                <Button data-testid='save-button' size='sm' type='submit' variant='primary' className={styles.button} onClick={() => handleOnSave(!!note)}>Save</Button>
               </>
             ) : (
               <>
-                <Button size='sm' type='button' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
-                <Button size='sm' type='button' variant='secondary' className={styles.button} onClick={()=>handleOnRemoveFromTrash(note?.id)}>Delete Forever</Button>
+                <Button data-testid='restore-button' size='sm' type='button' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
+                <Button data-testid='delete-button' size='sm' type='button' variant='secondary' className={styles.button} onClick={()=>handleOnRemoveFromTrash(note?.id)}>Delete Forever</Button>
               </>
             )}
         </footer>
