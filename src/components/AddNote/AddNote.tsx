@@ -34,7 +34,6 @@ const AddNote: React.FC<AddNoteProps> = ({
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location, 'location');
   const folders = useSelector((state: RootState) => state.folders);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
