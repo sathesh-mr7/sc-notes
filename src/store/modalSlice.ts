@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ModalState {
+export interface ModalState {
   modalId: string;
   visible: boolean;
 }
