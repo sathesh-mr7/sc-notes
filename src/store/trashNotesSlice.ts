@@ -10,15 +10,15 @@ const trashNotesSlice = createSlice({
     addToTrash: (state, action) => {
       state.push(action.payload);
       addNotesToTrash(state);
+      return state;
     },
     deleteFromTrash: (state, action) => {
-      const index = state.findIndex((note) => note.id === action.payload.id);
-      state.splice(index, 1);
+      state = state.filter((note) => note.id !== action.payload);
       addNotesToTrash(state);
+      return state;
     },
     clearTrash: () => {
-      addNotesToTrash(initialState);
-      return initialState;
+      return [];
     },
   },
 });

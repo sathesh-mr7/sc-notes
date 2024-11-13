@@ -32,6 +32,7 @@ const AddNote: React.FC<AddNoteProps> = ({
   onClose,
   readonly = false,
 }) => {
+  console.log('AddNote', note);
   const dispatch = useDispatch();
   const location = useLocation();
   const folders = useSelector((state: RootState) => state.folders);
@@ -94,21 +95,15 @@ const AddNote: React.FC<AddNoteProps> = ({
   }
 
   const handleOnRestore = () => {
-    dispatch(addNote({
-      id: crypto.randomUUID(),
-      title,
-      content: formattedText,
-      createdAt: formatDate(new Date()),
-      updatedAt: formatDate(new Date()),
-      ...(folderId ? { folder: folderId } : {}),
-      ...(labelName && labelColor ? { tag: { text: labelName, color: labelColor } } : {}),
-    }));
-    handleOnRemoveFromTrash();
+    console.log('Restore Note', note);
+    dispatch(addNote(note));
+    handleOnRemoveFromTrash(note?.id);
     handleOnClose();
   };
 
-  const handleOnRemoveFromTrash = () => {
-    dispatch(deleteFromTrash(noteId));
+  const handleOnRemoveFromTrash = (id: string | undefined) => {
+    if(!id) return;
+    dispatch(deleteFromTrash(id));
     handleOnClose();
   }
 
@@ -178,7 +173,7 @@ const AddNote: React.FC<AddNoteProps> = ({
             ) : (
               <>
                 <Button size='sm' type='button' variant='tertiary' className={styles.button} onClick={handleOnRestore}>Restore</Button>
-                <Button size='sm' type='button' variant='secondary' className={styles.button} onClick={handleOnRemoveFromTrash}>Delete Forever</Button>
+                <Button size='sm' type='button' variant='secondary' className={styles.button} onClick={()=>handleOnRemoveFromTrash(note?.id)}>Delete Forever</Button>
               </>
             )}
         </footer>
