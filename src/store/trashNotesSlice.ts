@@ -17,8 +17,9 @@ const trashNotesSlice = createSlice({
       addNotesToTrash(state);
       return state;
     },
-    clearTrash: () => {
-      return [];
+    clearTrash: (state) => {
+      state = [];
+      return state;
     },
   },
 });

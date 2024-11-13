@@ -11,6 +11,7 @@ const notesSlice = createSlice({
       console.log('addNote', action.payload);
       state.push(action.payload);
       setNotes(state);
+      return state;
     },
     removeNote: (state, action) => {
       console.log('removeNote', action.payload);
@@ -33,15 +34,17 @@ const notesSlice = createSlice({
         Object.assign(existingNote, note);
       }
       setNotes(state);
+      return state;
     },
     filterNotes: (state, action) => {
       const query = action.payload.toLowerCase();
       const notes = getNotes();
-      return notes.filter(
+      const filterNotes = notes.filter(
         (note) => (note.title.toLowerCase().includes(query) ||
           note.content.toLowerCase().includes(query) ||
           note.tag?.text.toLowerCase().includes(query)),
       );
+      state = filterNotes;
     },
     resetFilter: () => {
       return getNotes();

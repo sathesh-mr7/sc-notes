@@ -10,16 +10,19 @@ const folderSlice = createSlice({
     addFolder: (state, action) => {
       state.push(action.payload);
       setFolder(state);
+      return state;
     },
     removeFolder: (state, action) => {
       const filterFolders = state.filter(folder => (folder.name !== action.payload));
       setFolder(filterFolders);
-      return filterFolders;
+      state = filterFolders;
+      return state;
     },
     renameFolder: (state, action) => {
       const folderIndex = state.findIndex(folder => folder.id === action.payload.id);
       state[folderIndex].name = action.payload.name;
       setFolder(state);
+      return state;
     }
   }
 });
