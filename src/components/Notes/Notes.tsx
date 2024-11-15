@@ -52,7 +52,7 @@ const Notes: React.FC<NotesProps> = ({
   const handleOnActionMenuClick = (note: Note, action: string) => {
     switch (action) {
       case 'Edit':
-        handleOnNoteClick(note as Note);
+        handleOnNoteClick(note);
         break;
       case 'Delete':
         setSelectedNote(note);
