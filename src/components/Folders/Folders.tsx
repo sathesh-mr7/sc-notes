@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reduxStore";
 import { closeModal, showModal } from "../../store/modalSlice";
 import { removeFolder } from "../../store/folderSlice";
+import { removeFolderNotes } from "../../store/notesSlice";
 
 import { CONFIRM_DELETE_FOLDER_MODAL_ID } from "../../constants";
 
@@ -11,7 +12,6 @@ import SubList from "../SubList/SubList";
 import Portal from "../Portal/Portal";
 import Layover from "../../ui/Layover/Layover";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import { removeFolderNotes } from "../../store/notesSlice";
 
 interface FoldersProps { 
   onFolderClick?: () => void;
