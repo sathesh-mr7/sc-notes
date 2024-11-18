@@ -45,7 +45,7 @@ jobs:
       - name: Install Unlighthouse
         run: npm install -g unlighthouse
       - name: Run Unlighthouse
-        run: unlighthouse --host https://sathesh-mr7.github.io/sc-notes
+        run: unlighthouse --site https://sathesh-mr7.github.io/sc-notes
 
       - name: Build
         run: |
