@@ -10,9 +10,7 @@ const Logo = () => {
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.link}>
-        {themeContext?.isDarkMode ?
-          <img src={darkLogo} className={styles.logo} alt="logo" />
-          : <img src={logo} className={styles.logo} alt="logo" />}
+        <img src={themeContext?.isDarkMode ? darkLogo : logo} className={styles.logo} alt="logo" />
       </Link>
     </div>
   );
