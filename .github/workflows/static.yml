@@ -35,19 +35,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Install dependencies
         run: npm install
+
       - name: Run unit tests
         run: npm test
+
+      - name: Install Unlighthouse
+        run: npm install -g unlighthouse
+      - name: Run Unlighthouse
+        run: unlighthouse --host https://sathesh-mr7.github.io/sc-notes
+
       - name: Build
         run: |
           echo "DISABLE_ESLINT_PLUGIN=true" >> .env
           npm run build --output-path=build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: 'github-pages'
           path: build
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
